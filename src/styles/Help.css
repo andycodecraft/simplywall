@@ -1,0 +1,216 @@
+
+.pt-0 { 
+    padding-top: 0px; 
+}
+.pt-1 { 
+    padding-top: 1px; 
+}
+.pt-2 { 
+    padding-top: 2px; 
+}
+.pt-3 { 
+    padding-top: 3px; 
+}
+.pt-4 { 
+    padding-top: 4px; 
+}
+.pt-5 { 
+    padding-top: 5px;
+}
+.pt-6 { 
+    padding-top: 6px; 
+}
+.pt-7 { 
+    padding-top: 7px; 
+}
+.pt-8 { 
+    padding-top: 8px; 
+}
+.pt-9 { 
+    padding-top: 9px; 
+}
+.pt-10 { 
+    padding-top: 10px; 
+}
+.pt-11 { 
+    padding-top: 11px; 
+}
+.pt-12 { 
+    padding-top: 12px; 
+}
+.pt-13 { 
+    padding-top: 13px; 
+}
+.pt-14 {
+    padding-top: 14px; 
+}
+.pt-15 { 
+    padding-top: 15px; 
+}
+.pt-16 { 
+    padding-top: 16px; 
+}
+.pt-17 { 
+    padding-top: 17px; 
+}
+.pt-18 { 
+    padding-top: 18px; 
+}
+.pt-19 { 
+    padding-top: 19px; 
+}
+.pt-20 { 
+    padding-top: 20px; 
+}
+.pt-21 { 
+    padding-top: 21px; 
+}
+.pt-22 { 
+    padding-top: 22px; 
+}
+.pt-23 { 
+    padding-top: 23px; 
+}
+.pt-24 { 
+    padding-top: 24px; 
+}
+.pt-25 { 
+    padding-top: 25px; 
+}
+.pt-26 { 
+    padding-top: 26px; 
+}
+.pt-27 { 
+    padding-top: 27px; 
+}
+.pt-28 { 
+    padding-top: 28px; 
+}
+.pt-29 { 
+    padding-top: 29px; 
+}
+.pt-30 { 
+    padding-top: 30px; 
+}
+
+.p-0 { 
+    padding: 0px; 
+}
+.p-1 { 
+    padding: 1px; 
+}
+.p-2 { 
+    padding: 2px; 
+}
+.p-3 { 
+    padding: 3px; 
+}
+.p-4 { 
+    padding: 4px; 
+}
+.p-5 { 
+    padding: 5px; 
+}
+.p-6 { 
+    padding: 6px; 
+}
+.p-7 { 
+    padding: 7px; 
+}
+.p-8 { 
+    padding: 8px; 
+}
+.p-9 { 
+    padding: 9px; 
+}
+.p-10 { 
+    padding: 10px; 
+}
+.p-11 { 
+    padding: 11px; 
+}
+.p-12 { 
+    padding: 12px; 
+}
+.p-13 { 
+    padding: 13px; 
+}
+.p-14 { 
+    padding: 14px; 
+}
+.p-15 { 
+    padding: 15px; 
+}
+.p-16 { 
+    padding: 16px; 
+}
+.p-17 { 
+    padding: 17px; 
+}
+.p-18 { 
+    padding: 18px; 
+}
+.p-19 { 
+    padding: 19px; 
+}
+.p-20 { 
+    padding: 20px; 
+}
+.p-21 { 
+    padding: 21px; 
+}
+.p-22 { 
+    padding: 22px; 
+}
+.p-23 { 
+    padding: 23px; 
+}
+.p-24 { 
+    padding: 24px; 
+}
+.p-25 { 
+    padding: 25px; 
+}
+.p-26 { 
+    padding: 26px; 
+}
+.p-27 { 
+    padding: 27px; 
+}
+.p-28 { 
+    padding: 28px; 
+}
+.p-29 { 
+    padding: 29px; 
+}
+.p-30 { 
+    padding: 30px; 
+}
+.flex {
+    display: flex;
+}
+.relative {
+    position: relative;
+}
+.w-100 {
+    width: 100%;
+}
+.m-0 {
+    margin: 0px;
+}
+.mr-8 {
+    margin-left: 8px;
+}
+
+.block {
+    display: block;
+}
+
+.col-span-1 {
+    grid-column: span 1 / span 1;
+    padding-top: 16px;
+}
+
+.ml-24 {
+    margin-left: 24px;
+}
