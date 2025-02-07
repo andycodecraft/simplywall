@@ -1,7 +1,7 @@
 // api.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/v1'; // Adjust the base URL as necessary
+const API_URL = 'http://66.42.95.64:5000/api/v1'; // Adjust the base URL as necessary
 
 export const registerUser = async (email, password) => {
   try {
