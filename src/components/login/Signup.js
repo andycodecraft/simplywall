@@ -1,6 +1,10 @@
 import React from 'react';
 
 import { useGoogleLogin } from '@react-oauth/google';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+
 import axios from "axios"
 
 import './Login.css'
@@ -60,14 +64,14 @@ const Signup = ({ setSigninEmail, setIsSignup, setSession, onClose }) => {
                 onClick={googleLogin}
                 className="continue-button continue-google"
               >
-                <i class="fa-brands fa-google"></i>
-                Continue with google
+                <FontAwesomeIcon icon={faGoogle} />
+                <span>Continue with google</span>
               </button>
               <button
                 onClick={handleEmailSignUp}
                 className="continue-button continue-email"
               >
-                <i class="fa-solid fa-envelope"></i>
+                <FontAwesomeIcon icon={faEnvelope} />
                 <span>Continue with Email</span>
               </button>
               <div className='sign-in-text'>

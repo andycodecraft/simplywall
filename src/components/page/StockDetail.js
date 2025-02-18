@@ -2,6 +2,10 @@ import './StockDetail.css'
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTools } from '@fortawesome/free-solid-svg-icons';
+import { faFile } from '@fortawesome/free-solid-svg-icons';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const StockDetail = () => {
   const navItems = [
@@ -47,6 +51,33 @@ const StockDetail = () => {
       sectionsRef.current.forEach((section) => observer.unobserve(section));
     };
   }, []);
+
+  // useEffect(() => {
+  //   const handleIframeLoad = () => {
+  //     setTimeout(() => {
+  //       const iframe = document.querySelector('iframe');
+  //       if (iframe) {
+  //         const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+  //         const chatInput = iframeDocument.getElementById('chat-input');
+  //         if (chatInput) {
+  //           chatInput.value = 'tripadvisor';
+  //         }
+  //       }
+  //     }, 10000); // 3000 milliseconds = 3 seconds
+  //   };
+
+  //   const iframe = document.querySelector('iframe');
+  //   if (iframe) {
+  //     iframe.addEventListener('load', handleIframeLoad);
+  //   }
+
+  //   // Cleanup function to remove the event listener when the component unmounts
+  //   return () => {
+  //     if (iframe) {
+  //       iframe.removeEventListener('load', handleIframeLoad);
+  //     }
+  //   };
+  // }, []);
 
   return (
     <>
@@ -384,6 +415,81 @@ const StockDetail = () => {
                 <div className='outline'>
                   <h2 className='header-section parent index'>2</h2>
                   <h2 className='header-section parent'>AI Advisor</h2>
+                </div>
+                <div class="aichat-container">
+                  <div class="aichat-header">
+                    <div class="aichat-headerbar">
+                      <svg width="15" height="15" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.6562 11.7478L12.9799 10.0238L11.2521 5.34375C11.12 4.98542 10.8812 4.67621 10.5679 4.45781C10.2546 4.2394 9.88186 4.12231 9.49994 4.12231C9.11803 4.12231 8.7453 4.2394 8.43199 4.45781C8.11869 4.67621 7.87988 4.98542 7.74775 5.34375L6.02369 10.0238L1.34369 11.7478C0.98536 11.8799 0.676151 12.1187 0.457749 12.432C0.239347 12.7454 0.122253 13.1181 0.122253 13.5C0.122253 13.8819 0.239347 14.2546 0.457749 14.568C0.676151 14.8813 0.98536 15.1201 1.34369 15.2522L6.01994 16.9762L7.74775 21.6562C7.87988 22.0146 8.11869 22.3238 8.43199 22.5422C8.7453 22.7606 9.11803 22.8777 9.49994 22.8777C9.88186 22.8777 10.2546 22.7606 10.5679 22.5422C10.8812 22.3238 11.12 22.0146 11.2521 21.6562L12.9762 16.98L17.6562 15.2522C18.0145 15.1201 18.3237 14.8813 18.5421 14.568C18.7605 14.2546 18.8776 13.8819 18.8776 13.5C18.8776 13.1181 18.7605 12.7454 18.5421 12.432C18.3237 12.1187 18.0145 11.8799 17.6562 11.7478ZM11.7143 15.0441C11.5616 15.1003 11.4229 15.1891 11.3079 15.3042C11.1928 15.4192 11.104 15.5579 11.0478 15.7106L9.49994 19.9012L7.95588 15.7106C7.8996 15.5579 7.81086 15.4192 7.69578 15.3042C7.5807 15.1891 7.44202 15.1003 7.28932 15.0441L3.09869 13.5L7.28932 11.9559C7.44202 11.8997 7.5807 11.8109 7.69578 11.6958C7.81086 11.5808 7.8996 11.4421 7.95588 11.2894L9.49994 7.09875L11.044 11.2894C11.1003 11.4421 11.189 11.5808 11.3041 11.6958C11.4192 11.8109 11.5579 11.8997 11.7106 11.9559L15.9012 13.5L11.7143 15.0441ZM12.1249 3.75C12.1249 3.45163 12.2435 3.16548 12.4544 2.9545C12.6654 2.74353 12.9516 2.625 13.2499 2.625H14.3749V1.5C14.3749 1.20163 14.4935 0.915483 14.7044 0.704505C14.9154 0.493526 15.2016 0.375 15.4999 0.375C15.7983 0.375 16.0845 0.493526 16.2954 0.704505C16.5064 0.915483 16.6249 1.20163 16.6249 1.5V2.625H17.7499C18.0483 2.625 18.3345 2.74353 18.5454 2.9545C18.7564 3.16548 18.8749 3.45163 18.8749 3.75C18.8749 4.04837 18.7564 4.33452 18.5454 4.5455C18.3345 4.75647 18.0483 4.875 17.7499 4.875H16.6249V6C16.6249 6.29837 16.5064 6.58452 16.2954 6.7955C16.0845 7.00647 15.7983 7.125 15.4999 7.125C15.2016 7.125 14.9154 7.00647 14.7044 6.7955C14.4935 6.58452 14.3749 6.29837 14.3749 6V4.875H13.2499C12.9516 4.875 12.6654 4.75647 12.4544 4.5455C12.2435 4.33452 12.1249 4.04837 12.1249 3.75ZM22.6249 8.25C22.6249 8.54837 22.5064 8.83452 22.2954 9.0455C22.0845 9.25647 21.7983 9.375 21.4999 9.375H21.1249V9.75C21.1249 10.0484 21.0064 10.3345 20.7954 10.5455C20.5845 10.7565 20.2983 10.875 19.9999 10.875C19.7016 10.875 19.4154 10.7565 19.2044 10.5455C18.9935 10.3345 18.8749 10.0484 18.8749 9.75V9.375H18.4999C18.2016 9.375 17.9154 9.25647 17.7044 9.0455C17.4935 8.83452 17.3749 8.54837 17.3749 8.25C17.3749 7.95163 17.4935 7.66548 17.7044 7.4545C17.9154 7.24353 18.2016 7.125 18.4999 7.125H18.8749V6.75C18.8749 6.45163 18.9935 6.16548 19.2044 5.9545C19.4154 5.74353 19.7016 5.625 19.9999 5.625C20.2983 5.625 20.5845 5.74353 20.7954 5.9545C21.0064 6.16548 21.1249 6.45163 21.1249 6.75V7.125H21.4999C21.7983 7.125 22.0845 7.24353 22.2954 7.4545C22.5064 7.66548 22.6249 7.95163 22.6249 8.25Z" fill="#7600BC" />
+                      </svg>
+                      <span>Ask our AI Stock Bot:</span>
+                    </div>
+                    <div className='setting-options'>
+                      <div className='setting-option'>
+                        <FontAwesomeIcon icon={faFile} style={{ color: "#c8460e" }} />
+                        <span>Job Description</span>
+                      </div>
+                      <div className='setting-option'>
+                        <svg fill="#1c5e4a" height="15px" width="15px" version="1.1" id="Capa_1" viewBox="0 0 190 190">
+                          <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+                          <g id="SVGRepo_iconCarrier">
+                            <path d="M3.53,0h182.94v44.78h-32.439V32.439H73.017L125.42,95l-52.403,62.561h81.015V145.22h32.439V190H3.53l79.574-95L3.53,0z" />
+                          </g>
+                        </svg>
+                        <span>Boolean</span>
+                      </div>
+                      <div className='setting-option'>
+                        <FontAwesomeIcon icon={faTools} style={{ color: "#ccc" }} />
+                        <span>Select Manually</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className='search-input-container'>
+                    <input type="text" class="aichat-input" placeholder="Software Engineers with 5+ yrs of experience at fintech companies in the Bay Area" />
+                    <button>
+                      <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                        width="24px" height="24px" viewBox="0 0 24.000000 24.000000"
+                        preserveAspectRatio="xMidYMid meet">
+                        <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)"
+                          fill="#5030A6" stroke="none">
+                          <path d="M0 182 l0 -40 65 -7 c36 -4 65 -11 65 -15 0 -4 -29 -11 -65 -15 l-65 -7 0 -40 c0 -22 4 -38 8 -36 79 31 222 94 222 98 0 4 -143 67 -222 98 -4 2 -8 -14 -8 -36z" />
+                        </g>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="search-options">
+                    <div class="option">
+                      <FontAwesomeIcon icon={faCheck} />
+                      <label class="option-label">Location</label>
+                    </div>
+                    <div class="option">
+                      <FontAwesomeIcon icon={faCheck} />
+                      <label class="option-label">Job Title</label>
+                    </div>
+                    <div class="option">
+                      <FontAwesomeIcon icon={faCheck} />
+                      <label class="option-label">Years of Experience</label>
+                    </div>
+                    <div class="option">
+                      <FontAwesomeIcon icon={faCheck} />
+                      <label class="option-label">Industry</label>
+                    </div>
+                    <div class="option">
+                      <FontAwesomeIcon icon={faCheck} />
+                      <label class="option-label">Skills</label>
+                    </div>
+                  </div>
+                </div>
+                <div className='llm-ai-chat-bot'>
+                  <iframe
+                  id="chat-bot-container"
+                    src="https://chainlit-llm-polished-sun-2054.fly.dev/"
+                    width="100%"
+                    height="600px"
+                    title="Embedded Webpage"
+                    style={{ border: 'none' }}
+                  ></iframe>
                 </div>
               </section>
               <section className='detail-section' ref={el => sectionsRef.current[2] = el}>
