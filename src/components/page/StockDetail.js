@@ -2,10 +2,6 @@ import './StockDetail.css'
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTools } from '@fortawesome/free-solid-svg-icons';
-import { faFile } from '@fortawesome/free-solid-svg-icons';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const StockDetail = () => {
   const navItems = [
@@ -63,7 +59,7 @@ const StockDetail = () => {
   //           chatInput.value = 'tripadvisor';
   //         }
   //       }
-  //     }, 10000); // 3000 milliseconds = 3 seconds
+  //     }, 1000); // 3000 milliseconds = 3 seconds
   //   };
 
   //   const iframe = document.querySelector('iframe');
@@ -424,72 +420,15 @@ const StockDetail = () => {
                       </svg>
                       <span>Ask our AI Stock Bot:</span>
                     </div>
-                    <div className='setting-options'>
-                      <div className='setting-option'>
-                        <FontAwesomeIcon icon={faFile} style={{ color: "#c8460e" }} />
-                        <span>Job Description</span>
-                      </div>
-                      <div className='setting-option'>
-                        <svg fill="#1c5e4a" height="15px" width="15px" version="1.1" id="Capa_1" viewBox="0 0 190 190">
-                          <g id="SVGRepo_bgCarrier" stroke-width="0" />
-                          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
-                          <g id="SVGRepo_iconCarrier">
-                            <path d="M3.53,0h182.94v44.78h-32.439V32.439H73.017L125.42,95l-52.403,62.561h81.015V145.22h32.439V190H3.53l79.574-95L3.53,0z" />
-                          </g>
-                        </svg>
-                        <span>Boolean</span>
-                      </div>
-                      <div className='setting-option'>
-                        <FontAwesomeIcon icon={faTools} style={{ color: "#ccc" }} />
-                        <span>Select Manually</span>
-                      </div>
-                    </div>
                   </div>
-                  <div className='search-input-container'>
-                    <input type="text" class="aichat-input" placeholder="Software Engineers with 5+ yrs of experience at fintech companies in the Bay Area" />
-                    <button>
-                      <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                        width="24px" height="24px" viewBox="0 0 24.000000 24.000000"
-                        preserveAspectRatio="xMidYMid meet">
-                        <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)"
-                          fill="#5030A6" stroke="none">
-                          <path d="M0 182 l0 -40 65 -7 c36 -4 65 -11 65 -15 0 -4 -29 -11 -65 -15 l-65 -7 0 -40 c0 -22 4 -38 8 -36 79 31 222 94 222 98 0 4 -143 67 -222 98 -4 2 -8 -14 -8 -36z" />
-                        </g>
-                      </svg>
-                    </button>
-                  </div>
-                  <div class="search-options">
-                    <div class="option">
-                      <FontAwesomeIcon icon={faCheck} />
-                      <label class="option-label">Location</label>
-                    </div>
-                    <div class="option">
-                      <FontAwesomeIcon icon={faCheck} />
-                      <label class="option-label">Job Title</label>
-                    </div>
-                    <div class="option">
-                      <FontAwesomeIcon icon={faCheck} />
-                      <label class="option-label">Years of Experience</label>
-                    </div>
-                    <div class="option">
-                      <FontAwesomeIcon icon={faCheck} />
-                      <label class="option-label">Industry</label>
-                    </div>
-                    <div class="option">
-                      <FontAwesomeIcon icon={faCheck} />
-                      <label class="option-label">Skills</label>
-                    </div>
-                  </div>
-                </div>
-                <div className='llm-ai-chat-bot'>
                   <iframe
-                  id="chat-bot-container"
+                    id="chat-bot-container"
                     src="https://chainlit-llm-polished-sun-2054.fly.dev/"
                     width="100%"
                     height="600px"
                     title="Embedded Webpage"
                     style={{ border: 'none' }}
-                  ></iframe>
+                  />
                 </div>
               </section>
               <section className='detail-section' ref={el => sectionsRef.current[2] = el}>
