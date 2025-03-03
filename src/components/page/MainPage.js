@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import Discover from './Discover';
 import Stocks from './Stocks';
@@ -28,6 +28,7 @@ const MainPage = () => {
     const [isSigninEmailOpen, setSigninEmailOpen] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
     const [session, setSession] = useState(null);
+    const navigate = useNavigate();
 
     const handleSignupOpenDialog = () => setSignupDialogOpen(true);
     const handleSignupCloseDialog = () => setSignupDialogOpen(false);
@@ -56,10 +57,10 @@ const MainPage = () => {
     useEffect(() => {
         const target = observerTarget.current; // Get the current observer target element
 
-        if (!target) return; // Exit if the target doesn't exist
+        if (!target) return;
 
         if (observer.current) {
-            observer.current.disconnect(); // Disconnect any existing observer
+            observer.current.disconnect();
         }
 
         observer.current = new IntersectionObserver(
@@ -68,12 +69,11 @@ const MainPage = () => {
                     loadMoreItems();
                 }
             },
-            { threshold: 1.0 } // Trigger when the target is fully visible
+            { threshold: 1.0 }
         );
 
-        observer.current.observe(target); // Observe the target element
+        observer.current.observe(target);
 
-        // Cleanup the observer when the component unmounts
         return () => {
             if (observer.current) {
                 observer.current.disconnect();
@@ -98,14 +98,6 @@ const MainPage = () => {
             investingRef.current.click();
         }
     }, [])
-
-    const activefunc = (evt) => {
-        const nav_hover = document.getElementsByClassName("nav-hover");
-        for (var i = 0; i < nav_hover.length; i++) {
-            nav_hover[i].className = nav_hover[i].className.replace(" active", "");
-        }
-        evt.currentTarget.className += " active";
-    }
 
     const tablistfunc = (evt) => {
         const tablist_btn = document.getElementsByClassName("tablist-btn");

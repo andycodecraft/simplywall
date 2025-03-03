@@ -139,7 +139,7 @@ const Stocks = () => {
                 <tbody>
                   <tr className='stocks-table-row'>
                     <td>
-                      <a href="/stocks/" className="stock-link">
+                      <a href="/main/stocks/" className="stock-link">
                         <div className="stock-image-container">
                           <div className="stock-image-subcontainer">
                             <div className='stock-image-child-container'>
@@ -155,7 +155,7 @@ const Stocks = () => {
                       </a>
                     </td>
                     <td className='company-info-container'>
-                      <a href={`/stocks/${id}/detail/11`} className='company-link'>
+                      <a href={`/main/stocks/${id}/detail/11`} className='company-link'>
                         <div className='company-link-container'>
                           <div className='company-link-style'>TRIP</div>
                         </div>
@@ -165,31 +165,31 @@ const Stocks = () => {
                       </a>
                     </td>
                     <td>
-                      <a href={`/stocks/${id}/detail/11`} tabindex="-1">US$17.27</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1">US$17.27</a>
                     </td>
                     <td>
-                      <a href={`/stocks/${id}/detail/11`} tabindex="-1" className='return-link'>-2.3%</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1" className='return-link'>-2.3%</a>
                     </td>
                     <td>
-                      <a href={`/stocks/${id}/detail/11`} tabindex="-1" className='return-link'>-20.5%</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1" className='return-link'>-20.5%</a>
                     </td>
                     <td>
-                      <a href={`/stocks/${id}/detail/11`} tabindex="-1">US$2.4b</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1">US$2.4b</a>
                     </td>
                     <td>
-                      <a href={`/stocks/${id}/detail/11`} tabindex="-1">US$17.32</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1">US$17.32</a>
                     </td>
                     <td>
-                      <a href={`/stocks/${id}/detail/11`} tabindex="-1">PE 66.8x</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1">PE 66.8x</a>
                     </td>
                     <td>
-                      <a href={`/stocks/${id}/detail/11`} tabindex="-1">E 30.9%</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1">E 30.9%</a>
                     </td>
                     <td>
-                      <a href={`/stocks/${id}/detail/11`} tabindex="-1" className='disable-link'>n/a</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1" className='disable-link'>n/a</a>
                     </td>
                     <td>
-                      <a href={`/stocks/${id}/detail/11`} tabindex="-1" className='disable-link'></a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1" className='disable-link'></a>
                     </td>
                   </tr>
                 </tbody>

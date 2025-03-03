@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './Template.css'
 
@@ -6,6 +7,7 @@ const Header = ({ handleSignupOpenDialog, session, setSession }) => {
   const [menuVisible, setMenuVisible] = useState(false);
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuVisible((prevVisible) => !prevVisible);
@@ -40,7 +42,14 @@ const Header = ({ handleSignupOpenDialog, session, setSession }) => {
     console.log('User logged out');
     setSession('');
     setMenuVisible(false);
+    navigate('/');
   };
+
+  useEffect(() => {
+    if (session === '') {
+      navigate('/');
+    }
+  }, [session, navigate]);
 
   return (
     <div className='nav-bar-wrap'>

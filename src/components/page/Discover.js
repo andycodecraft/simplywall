@@ -21,7 +21,7 @@ const Discover = ({ images, investingRef, observerTarget, tablistfunc, visibleIt
             {visibleItems.map((key, index) => (
               <a
                 key={key}
-                href={`/stocks/${index + 1}`}
+                href={`/main/stocks/${index + 1}`}
                 className="list-grid-container"
               >
                 <div className="list-grid">

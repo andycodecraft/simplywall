@@ -44,7 +44,11 @@ const StockDetail = () => {
     sectionsRef.current.forEach((section) => observer.observe(section));
 
     return () => {
-      sectionsRef.current.forEach((section) => observer.unobserve(section));
+      sectionsRef.current.forEach((section) => {
+        if (section) {
+          observer.unobserve(section);
+        }
+      });
     };
   }, []);
 
@@ -89,11 +93,11 @@ const StockDetail = () => {
                 <div className='header-description-intro'>
                   <ul className='header-description-link'>
                     <li>
-                      <a href="/stocks/1" className='child-link-0'>Stocks</a>
+                      <a href="/main/stocks/1" className='child-link-0'>Stocks</a>
                     </li>
                     <li>/</li>
                     <li>
-                      <a href="/stocks/1" className='child-link-1'>Media</a>
+                      <a href="/main/stocks/1" className='child-link-1'>Media</a>
                     </li>
                   </ul>
                 </div>
