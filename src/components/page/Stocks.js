@@ -11,18 +11,18 @@ const Stocks = () => {
       <div className="discover-header-container">
         <div className="discover-header">
           <div className="discover-header-background" />
-          <img src="https://simplywall.st/cdn-cgi/image/format=auto,fit=cover,w=1152,h=168,q=80,blur=0/https://simplywall.st/static/images/gridview/152-undiscovered-gems-with-strong-fundamentals.jpeg" srcset="https://simplywall.st/cdn-cgi/image/format=auto,fit=cover,w=1152,h=168,q=80,blur=0/https://simplywall.st/static/images/gridview/152-undiscovered-gems-with-strong-fundamentals.jpeg 1152w,https://simplywall.st/cdn-cgi/image/format=auto,fit=cover,w=976,h=168,q=80,blur=0/https://simplywall.st/static/images/gridview/152-undiscovered-gems-with-strong-fundamentals.jpeg 976w,https://simplywall.st/cdn-cgi/image/format=auto,fit=contain,w=768,h=176,q=80,blur=0/https://simplywall.st/static/images/gridview/152-undiscovered-gems-with-strong-fundamentals.jpeg 768w,https://simplywall.st/cdn-cgi/image/format=auto,fit=contain,w=425,h=237,q=80,blur=0/https://simplywall.st/static/images/gridview/152-undiscovered-gems-with-strong-fundamentals.jpeg 425w,https://simplywall.st/cdn-cgi/image/format=auto,fit=contain,w=375,h=261,q=80,blur=0/https://simplywall.st/static/images/gridview/152-undiscovered-gems-with-strong-fundamentals.jpeg 375w" alt="Header cover image" class="discover-header-cover-image"></img>
+          <img src="https://simplywall.st/cdn-cgi/image/format=auto,fit=cover,w=1152,h=168,q=80,blur=0/https://simplywall.st/static/images/gridview/152-undiscovered-gems-with-strong-fundamentals.jpeg" srcSet="https://simplywall.st/cdn-cgi/image/format=auto,fit=cover,w=1152,h=168,q=80,blur=0/https://simplywall.st/static/images/gridview/152-undiscovered-gems-with-strong-fundamentals.jpeg 1152w,https://simplywall.st/cdn-cgi/image/format=auto,fit=cover,w=976,h=168,q=80,blur=0/https://simplywall.st/static/images/gridview/152-undiscovered-gems-with-strong-fundamentals.jpeg 976w,https://simplywall.st/cdn-cgi/image/format=auto,fit=contain,w=768,h=176,q=80,blur=0/https://simplywall.st/static/images/gridview/152-undiscovered-gems-with-strong-fundamentals.jpeg 768w,https://simplywall.st/cdn-cgi/image/format=auto,fit=contain,w=425,h=237,q=80,blur=0/https://simplywall.st/static/images/gridview/152-undiscovered-gems-with-strong-fundamentals.jpeg 425w,https://simplywall.st/cdn-cgi/image/format=auto,fit=contain,w=375,h=261,q=80,blur=0/https://simplywall.st/static/images/gridview/152-undiscovered-gems-with-strong-fundamentals.jpeg 375w" alt="Header cover image" className="discover-header-cover-image"></img>
         </div>
         <div className="discover-header-content-container">
           <div className="discover-header-content">
             <div className="discover-header-cell-intro">
-              <ul class="flex flex-wrap gap-x1">
+              <ul className="flex flex-wrap gap-x1">
                 <li>
                   <a href="/" data-cy-id="child-link-0" className="text-xs color-inherit hover:text-soft">Investing Ideas</a>
                 </li>
                 <li>/</li>
                 <li>
-                  <span class="text-xs">Tripadvisor</span>
+                  <span className="text-xs">Tripadvisor</span>
                 </li>
               </ul>
             </div>
@@ -118,19 +118,19 @@ const Stocks = () => {
                     <th>1Y Return</th>
                     <th>
                       Market cap
-                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" tabindex="0"><path fillRule="evenodd" clipRule="evenodd" d="M5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM13 8V10H11V8H13ZM13 16V11H11V16H13Z" fill="rgba(255, 255, 255, 0.5)"></path></svg>
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" tabIndex="0"><path fillRule="evenodd" clipRule="evenodd" d="M5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM13 8V10H11V8H13ZM13 16V11H11V16H13Z" fill="rgba(255, 255, 255, 0.5)"></path></svg>
                     </th>
                     <th>
                       Analysts Targets
-                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" tabindex="0"><path fillRule="evenodd" clipRule="evenodd" d="M5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM13 8V10H11V8H13ZM13 16V11H11V16H13Z" fill="rgba(255, 255, 255, 0.5)"></path></svg>
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" tabIndex="0"><path fillRule="evenodd" clipRule="evenodd" d="M5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM13 8V10H11V8H13ZM13 16V11H11V16H13Z" fill="rgba(255, 255, 255, 0.5)"></path></svg>
                     </th>
                     <th>
                       Valuation
-                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" tabindex="0"><path fillRule="evenodd" clipRule="evenodd" d="M5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM13 8V10H11V8H13ZM13 16V11H11V16H13Z" fill="rgba(255, 255, 255, 0.5)"></path></svg>
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" tabIndex="0"><path fillRule="evenodd" clipRule="evenodd" d="M5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM13 8V10H11V8H13ZM13 16V11H11V16H13Z" fill="rgba(255, 255, 255, 0.5)"></path></svg>
                     </th>
                     <th>
                       Growth
-                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" tabindex="0"><path fillRule="evenodd" clipRule="evenodd" d="M5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM13 8V10H11V8H13ZM13 16V11H11V16H13Z" fill="rgba(255, 255, 255, 0.5)"></path></svg>
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" tabIndex="0"><path fillRule="evenodd" clipRule="evenodd" d="M5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM13 8V10H11V8H13ZM13 16V11H11V16H13Z" fill="rgba(255, 255, 255, 0.5)"></path></svg>
                     </th>
                     <th>Div Yield</th>
                     <th></th>
@@ -165,31 +165,31 @@ const Stocks = () => {
                       </a>
                     </td>
                     <td>
-                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1">US$17.27</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabIndex="-1">US$17.27</a>
                     </td>
                     <td>
-                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1" className='return-link'>-2.3%</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabIndex="-1" className='return-link'>-2.3%</a>
                     </td>
                     <td>
-                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1" className='return-link'>-20.5%</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabIndex="-1" className='return-link'>-20.5%</a>
                     </td>
                     <td>
-                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1">US$2.4b</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabIndex="-1">US$2.4b</a>
                     </td>
                     <td>
-                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1">US$17.32</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabIndex="-1">US$17.32</a>
                     </td>
                     <td>
-                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1">PE 66.8x</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabIndex="-1">PE 66.8x</a>
                     </td>
                     <td>
-                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1">E 30.9%</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabIndex="-1">E 30.9%</a>
                     </td>
                     <td>
-                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1" className='disable-link'>n/a</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabIndex="-1" className='disable-link'>n/a</a>
                     </td>
                     <td>
-                      <a href={`/main/stocks/${id}/detail/11`} tabindex="-1" className='disable-link'></a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabIndex="-1" className='disable-link'></a>
                     </td>
                   </tr>
                 </tbody>

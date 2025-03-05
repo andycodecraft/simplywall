@@ -86,12 +86,20 @@ const MainPage = () => {
             discover.current.click();
         }
 
-        if (localStorage.getItem('token')) {
-            setSession(localStorage.getItem('token'));
-        } else {
-            setSession('')
+        const token = localStorage.getItem('token');
+        setSession(token || '');
+
+        if (!session) {
+            const timer = setTimeout(() => {
+                setSigninEmailOpen(true);
+            }, 5000);
+
+            return () => {
+                clearTimeout(timer);
+                document.removeEventListener('click', handleClick);
+            };
         }
-    }, [])
+    }, [session])
 
     useEffect(() => {
         if (investingRef.current) {
