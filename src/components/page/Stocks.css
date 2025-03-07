@@ -445,8 +445,9 @@ canvas {
   margin: 10px 0px;
 }
 
-.stocks-table-cotainer {
+.stocks-table-container {
   width: 100%;
+  padding-top: 20px;
   color: white;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   font-size: 10px;
@@ -482,7 +483,7 @@ canvas {
   color: rgb(255, 255, 255);
 }
 
-.stocks-table-cotainer tr th {
+.stocks-table-header tr th {
   font-size: 0.8rem;
   line-height: 1.5;
   font-weight: 500;
@@ -599,7 +600,7 @@ canvas {
   line-height: 1.5;
 }
 
-.company-intro {
+.cell-intro {
   opacity: 0.5;
   color: hsl(0, 0%, 100%);
   font-weight: 400;
@@ -609,8 +610,12 @@ canvas {
   cursor: help;
 }
 
-.return-link {
+.negative {
   color: hsl(0, 77%, 58%) !important;
+}
+
+.positive {
+  color: hsl(151 63% 48%) !important;
 }
 
 .disable-link {

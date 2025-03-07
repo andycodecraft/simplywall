@@ -104,7 +104,7 @@ const Stocks = () => {
           </button>
         </div>
       </div>
-      <div className='stocks-table-cotainer'>
+      <div className='stocks-table-container'>
         <div className='stocks-table-scorll'>
           <section className='stocks-table-section'>
             <div className='stocks-table-subcontainer'>
@@ -159,7 +159,7 @@ const Stocks = () => {
                         <div className='company-link-container'>
                           <div className='company-link-style'>TRIP</div>
                         </div>
-                        <span className='company-intro'>
+                        <span className='cell-intro'>
                           Tripadvisor
                         </span>
                       </a>
@@ -168,10 +168,10 @@ const Stocks = () => {
                       <a href={`/main/stocks/${id}/detail/11`} tabIndex="-1">US$17.27</a>
                     </td>
                     <td>
-                      <a href={`/main/stocks/${id}/detail/11`} tabIndex="-1" className='return-link'>-2.3%</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabIndex="-1" className='negative'>-2.3%</a>
                     </td>
                     <td>
-                      <a href={`/main/stocks/${id}/detail/11`} tabIndex="-1" className='return-link'>-20.5%</a>
+                      <a href={`/main/stocks/${id}/detail/11`} tabIndex="-1" className='negative'>-20.5%</a>
                     </td>
                     <td>
                       <a href={`/main/stocks/${id}/detail/11`} tabIndex="-1">US$2.4b</a>

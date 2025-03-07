@@ -1,6 +1,5 @@
 import './Membership.css'
 import '../template/Template.css'
-import Footer from '../template/Footer'
 
 import React from 'react';
 
@@ -208,9 +207,6 @@ const Membership = () => {
           </div>
         </section>
       </section>
-      <section className='footer-section'>
-          <Footer />
-        </section>
     </>
   )
 }

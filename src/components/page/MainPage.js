@@ -6,8 +6,8 @@ import Stocks from './Stocks';
 import StockDetail from './StockDetail';
 import Signup from '../login/Signup';
 import SignInEmail from '../login/SigninEmail';
+import SigninPremium from '../login/SigininPremium';
 import Header from '../template/Header';
-import Footer from '../template/Footer';
 
 import './MainPage.css';
 import '../../styles/Help.css';
@@ -26,12 +26,16 @@ const images = importAll(require.context('../../assets/image', false, /\.(png|jp
 const MainPage = () => {
     const [isSignupDialogOpen, setSignupDialogOpen] = useState(false);
     const [isSigninEmailOpen, setSigninEmailOpen] = useState(false);
+    const [isPremiumSigninOpen, setPremiumSigninOpen] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
     const [session, setSession] = useState(null);
     const navigate = useNavigate();
 
     const handleSignupOpenDialog = () => setSignupDialogOpen(true);
     const handleSignupCloseDialog = () => setSignupDialogOpen(false);
+
+    const handlePremiumSignOpenDialog = () => setPremiumSigninOpen(true);
+    const handlePremiumSignCloseDialog = () => setPremiumSigninOpen(false);
 
     const investingRef = useRef(null);
     const discover = useRef(null);
@@ -91,29 +95,14 @@ const MainPage = () => {
 
         if (!session) {
             const timer = setTimeout(() => {
-                setSigninEmailOpen(true);
+                setPremiumSigninOpen(true);
             }, 5000);
 
             return () => {
                 clearTimeout(timer);
-                document.removeEventListener('click', handleClick);
             };
         }
     }, [session])
-
-    useEffect(() => {
-        if (investingRef.current) {
-            investingRef.current.click();
-        }
-    }, [])
-
-    const tablistfunc = (evt) => {
-        const tablist_btn = document.getElementsByClassName("tablist-btn");
-        for (var i = 0; i < tablist_btn.length; i++) {
-            tablist_btn[i].className = tablist_btn[i].className.replace(" tabactive", "");
-        }
-        evt.currentTarget.className += " tabactive";
-    }
 
     return (
         <div className='main-container'>
@@ -129,7 +118,6 @@ const MainPage = () => {
                                 images={images}
                                 investingRef={investingRef}
                                 observerTarget={observerTarget}
-                                tablistfunc={tablistfunc}
                                 visibleItems={visibleItems}
                             />} />
                         <Route path="/stocks/:id" element={
@@ -140,7 +128,6 @@ const MainPage = () => {
                     </Routes>
                 </section>
             </div>
-            <Footer />
             {isSignupDialogOpen && <Signup
                 setSigninEmail={setSigninEmailOpen}
                 setIsSignup={setIsSignup}
@@ -151,6 +138,12 @@ const MainPage = () => {
                 onClose={setSigninEmailOpen}
                 signinOption={isSignup}
                 setSession={setSession}
+            />}
+            {isPremiumSigninOpen && <SigninPremium
+                setSigninEmail={setSigninEmailOpen}
+                setIsSignup={setIsSignup}
+                setSession={setSession}
+                onClose={handlePremiumSignCloseDialog}
             />}
         </div>
     )

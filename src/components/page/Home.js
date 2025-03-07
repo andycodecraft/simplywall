@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import SignInEmail from '../login/SigninEmail';
-
 import './Home.css';
+
+import logo from 'assets/image/logo.svg'
 
 const Home = () => {
   const [isSigninEmailOpen, setSigninEmailOpen] = useState(false);
@@ -25,10 +26,6 @@ const Home = () => {
     setIsSignup(false);
   }
 
-  const handleSigninCloseDialog = () => {
-    setSigninEmailOpen(false);
-  }
-
   useEffect(() => {
     if (localStorage.getItem('token')) {
       setSession(localStorage.getItem('token'));
@@ -47,8 +44,8 @@ const Home = () => {
     <>
       <section className='navigation'>
         <div className="navbar w-nav">
-          <a href="https://simplywall.st/?view" className="brand w-nav-brand">
-            <img src="https://cdn.prod.website-files.com/648009cb318551f1806b36b4/64816f49bc7996f2d75efaa5_Simply%20Wall%20St%20Logo.svg" width="170" alt="" className="logo-image" />
+          <a href="/" className="brand w-nav-brand">
+            <img src={logo} width="50" alt="" className="logo-image" />
           </a>
           <div className='nav-button-wrapper'>
             <a

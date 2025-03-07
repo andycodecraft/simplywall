@@ -49,40 +49,49 @@ const SigninPremium = ({ setSigninEmail, setIsSignup, setSession, onClose }) => 
     <div className="sign-up-in-dialog">
       <div>
         <div className="dialog-overlay">
-          <div className="dialog">
+          <div className="premium-dialog">
             <button className="dialog-close" onClick={onClose}>
               &times;
             </button>
-            <div className="sign-up-content-header">
-              <p className="sign-up-content-header-text">Sign up to continue.
-                <br />
-                Free forever.
-              </p>
-            </div>
             <div className="dialog-content">
-              <button
+              <div className='premium-container'>
+                <div className='premium-header'>
+                  <span className='white'>Become a </span>
+                  <span className='orange'>Premium member</span>
+                </div>
+                <div className='premium-content'>
+                  <h1>Only $4.95 for 1 month</h1>
+                  <h2>After 1 month - Just $24.92/month ($299 billed after trial)</h2>
+                  <div className='para-spacer' />
+                  <span>
+                    Introductory offer for new subscribers only. $4.95 charged immediatly for a 1-month paid trial to Premium. After your 1-month paid trial, $299 will be charged automatically for an annual subsription unless you cancel during your 1-month trial. Auto-renews as an annual subscription at the then current annual list price (current list price is $299/year). Plus sales tax/VAT, where applicable.
+                  </span>
+                </div>
+              </div>
+              <div className='signin-container'>
+                <span className='header'>Let's get started:</span>
+                <div className='sign-in-option'>
+                  <span>Already have an account?</span>
+                  <button
+                    className="link-button"
+                    onClick={handleSigninEmailOpenDialog}>
+                    Sign in
+                  </button>
+                </div>
+                <button
+                  onClick={handleEmailSignUp}
+                  className="continue-button create-free"
+                >
+                  Create Free Account
+                </button>
+                <button
                 onClick={googleLogin}
                 className="continue-button continue-google"
               >
                 <FontAwesomeIcon icon={faGoogle} />
                 <span>Continue with google</span>
               </button>
-              <button
-                onClick={handleEmailSignUp}
-                className="continue-button continue-email"
-              >
-                <FontAwesomeIcon icon={faEnvelope} />
-                <span>Continue with Email</span>
-              </button>
-              <div className='sign-in-text'>
-                <span>Already have an account?</span>
-                <button
-                  className="link-button"
-                  onClick={handleSigninEmailOpenDialog}>
-                  Sign in
-                </button>
               </div>
-              <p className="agree-terms">By using Simply Wall St you are agreeing to our <a rel="noopener noreferrer" href="https://simplywall.st/terms-and-conditions" target="_blank" data-cy-id="link-terms-and-conditions" data-focus="solid" className="agree-terms-link">terms and conditions</a>. Simply Wall St provides general investment advice only.</p>
             </div>
           </div>
         </div>
