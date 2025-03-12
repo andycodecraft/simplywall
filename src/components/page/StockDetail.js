@@ -2,6 +2,7 @@ import './StockDetail.css'
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import {FastCommentsCommentWidget} from 'fastcomments-react'
 
 const StockDetail = () => {
   const navItems = [
@@ -51,33 +52,6 @@ const StockDetail = () => {
       });
     };
   }, []);
-
-  // useEffect(() => {
-  //   const handleIframeLoad = () => {
-  //     setTimeout(() => {
-  //       const iframe = document.querySelector('iframe');
-  //       if (iframe) {
-  //         const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-  //         const chatInput = iframeDocument.getElementById('chat-input');
-  //         if (chatInput) {
-  //           chatInput.value = 'tripadvisor';
-  //         }
-  //       }
-  //     }, 1000); // 3000 milliseconds = 3 seconds
-  //   };
-
-  //   const iframe = document.querySelector('iframe');
-  //   if (iframe) {
-  //     iframe.addEventListener('load', handleIframeLoad);
-  //   }
-
-  //   // Cleanup function to remove the event listener when the component unmounts
-  //   return () => {
-  //     if (iframe) {
-  //       iframe.removeEventListener('load', handleIframeLoad);
-  //     }
-  //   };
-  // }, []);
 
   return (
     <>
@@ -464,6 +438,7 @@ const StockDetail = () => {
                   <h2 className='header-section parent index'>7</h2>
                   <h2 className='header-section parent'>User Comments</h2>
                 </div>
+                <FastCommentsCommentWidget tenantId="demo" />
               </section>
             </div>
           </article>

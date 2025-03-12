@@ -1,11 +1,11 @@
 // api.js
 import axios from 'axios';
-
-const API_URL = process.env.REACT_APP_API_URL; // Adjust the base URL as necessary
+import config from 'config';
+import { loadStripe } from '@stripe/stripe-js';
 
 export const registerUser = async (email, password) => {
   try {
-    const response = await axios.post(`${API_URL}/signup`, { email, password });
+    const response = await axios.post(`${config.apiPath}/signup`, { email, password });
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -14,7 +14,7 @@ export const registerUser = async (email, password) => {
 
 export const signinUser = async (email, password) => {
   try {
-    const response = await axios.post(`${API_URL}/signin`, { email, password });
+    const response = await axios.post(`${config.apiPath}/signin`, { email, password });
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -23,9 +23,40 @@ export const signinUser = async (email, password) => {
 
 export const getSignToken = async (email) => {
   try {
-    const response = await axios.post(`${API_URL}/getToken`, { email });
+    const response = await axios.post(`${config.apiPath}/getToken`, { email });
     return response.data;
   } catch (error) {
     throw error.response.data;
   }
 };
+
+export const checkoutStripe = async (priceId) => {
+  try {
+    const stripePromise = loadStripe(config.stripePubkey);
+    const stripe = await stripePromise;
+
+    const response = await fetch(`${config.apiPath}/checkoutStripe`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ priceId }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to create checkout session');
+    }
+
+    const session = await response.json();
+
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      throw result.error.message;
+    }
+  } catch (error) {
+    throw error;
+  }
+}
