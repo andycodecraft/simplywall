@@ -11,6 +11,10 @@ body {
   flex-direction: column;
 }
 
+.logo-image-home {
+  margin-top: 20px;
+}
+
 .navigation {
   z-index: 999;
   background-color: #151b24;
@@ -21,7 +25,6 @@ body {
 .navbar {
   background-color: #CFDFFF;
   align-items: center;
-  max-width: 1600px;
   height: 72px;
   margin-left: auto;
   margin-right: auto;
@@ -103,7 +106,6 @@ body {
   mix-blend-mode: normal;
   flex-flow: column;
   flex: 1;
-  max-width: 1600px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 40px;

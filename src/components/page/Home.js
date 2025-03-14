@@ -45,7 +45,7 @@ const Home = () => {
       <section className='navigation'>
         <div className="navbar w-nav">
           <a href="/" className="brand w-nav-brand">
-            <img src={logo} width="50" alt="" className="logo-image" />
+            <img src={logo} width="70" alt="" className="logo-image-home" />
           </a>
           <div className='nav-button-wrapper'>
             <a
@@ -55,7 +55,7 @@ const Home = () => {
                 e.preventDefault(); // Prevent the default anchor behavior
                 handleSignupOpenDialog(); // Call your function
               }}
-            >Create free account</a>
+            >Start For Free</a>
             <a
               data-id="log-in-link"
               className="button login in-nav w-button"
@@ -64,7 +64,7 @@ const Home = () => {
                 handleSigninOpenDialog();
               }}
             >
-              Log in</a>
+              Log In</a>
           </div>
         </div>
       </section>
@@ -73,9 +73,9 @@ const Home = () => {
           <div className='home-bro-content'>
             <div className='hero-text home'>
               <h1 className='home-header'>
-                <span className='normal'>Proprietary AI-Stock advisor trained on thousands of the best hedge fund analysts</span>
+                <span className='normal'>AI-driven research advisor trained on thousands of proprietary hedge</span>
               </h1>
-              <p className="base">All-in-one platform to improve your portfolios, speed up research and find winning stocks.</p>
+              <p className="base">All-in-one platform to improve your returns, trained on the best stock pitches.</p>
               <div className='actions'>
                 <a
                   className="button-primary-large"
@@ -84,7 +84,7 @@ const Home = () => {
                     handleSignupOpenDialog(); // Call your function
                   }}
                 >
-                  <div className="text-16">Get started for free</div>
+                  <div className="text-16">Get Started For Free</div>
                 </a>
                 <a href="https://simplywall.st/portfolio/demo" rel="nofollow" className="button-outline on-dark-bg"><div className="text-16">View Top Ideas</div></a>
               </div>

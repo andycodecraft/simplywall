@@ -42,7 +42,7 @@ const Discover = ({ images, observerTarget, visibleItems }) => {
                 {visibleItems.map((key, index) => (
                   <a
                     key={key}
-                    href={`/main/stocks/${index + 1}`}
+                    href={`/main/detail/${index + 1}`}
                     className="list-grid-container"
                   >
                     <div className="list-grid">

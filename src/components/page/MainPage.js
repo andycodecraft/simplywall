@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Discover from './Discover';
-import Stocks from './Stocks';
 import StockDetail from './StockDetail';
 import Signup from '../login/Signup';
 import SignInEmail from '../login/SigninEmail';
@@ -29,12 +28,10 @@ const MainPage = () => {
     const [isPremiumSigninOpen, setPremiumSigninOpen] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
     const [session, setSession] = useState(null);
-    const navigate = useNavigate();
 
     const handleSignupOpenDialog = () => setSignupDialogOpen(true);
     const handleSignupCloseDialog = () => setSignupDialogOpen(false);
 
-    const handlePremiumSignOpenDialog = () => setPremiumSigninOpen(true);
     const handlePremiumSignCloseDialog = () => setPremiumSigninOpen(false);
 
     const investingRef = useRef(null);
@@ -120,9 +117,7 @@ const MainPage = () => {
                                 observerTarget={observerTarget}
                                 visibleItems={visibleItems}
                             />} />
-                        <Route path="/stocks/:id" element={
-                            <Stocks />} />
-                        <Route path="/stocks/:id/detail/:stock_id" element={
+                        <Route path="/detail/:stock_id" element={
                             <StockDetail />
                         } />
                     </Routes>

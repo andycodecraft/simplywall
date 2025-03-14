@@ -53,7 +53,7 @@ const Header = ({ handleSignupOpenDialog, session, setSession }) => {
         <div className='nav-bar-container relative'>
           <div className='simply-wall-logo-header'>
           <a href="/" className="brand w-nav-brand">
-            <img src={logo} width="40" alt="" className="logo-image" />
+            <img src={logo} width="55" alt="" className="logo-image" />
           </a>
           </div>
           <nav className='header-bar'>
