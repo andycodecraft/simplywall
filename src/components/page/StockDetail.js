@@ -2,7 +2,8 @@ import './StockDetail.css'
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import {FastCommentsCommentWidget} from 'fastcomments-react'
+import { FastCommentsCommentWidget } from 'fastcomments-react'
+import { getTopStockById } from 'helpers/api';
 
 const StockDetail = () => {
   const navItems = [
@@ -15,9 +16,16 @@ const StockDetail = () => {
     { id: '7', label: 'User Comments' }
   ];
 
-  const { id, stock_id } = useParams();
+  const { stock_id } = useParams();
   const sectionsRef = useRef([]);
   const [activeItem, setActiveItem] = useState(navItems[0].id);
+  const [stockDetail, setStockDetail] = useState([]);
+
+  const formatDate = () => {
+    const currentDate = new Date();
+    const options = { day: '2-digit', month: 'short', year: 'numeric' };
+    return currentDate.toLocaleDateString('en-US', options);
+  };
 
   const handleNavClick = (id) => {
     const sectionIndex = navItems.findIndex(item => item.id === id);
@@ -53,6 +61,20 @@ const StockDetail = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const fetchTopStockById = async (stock_id) => {
+      try {
+        const response = await getTopStockById(stock_id);
+        console.log(response)
+        setStockDetail(response);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchTopStockById(stock_id);
+  }, [])
+
   return (
     <>
       <div className='detail-header-container container'>
@@ -81,9 +103,9 @@ const StockDetail = () => {
                   </div>
                   <div className='company-title-container'>
                     <h1 className='company-title'>
-                      Tripadvisor
+                      {stockDetail.name}
                     </h1>
-                    <span>NasdaqGS:TRIP Stock Report</span>
+                    <span>{stockDetail.description}</span>
                   </div>
                 </div>
               </div>
@@ -108,7 +130,7 @@ const StockDetail = () => {
                     <p className='cell top'>LAST PRICE</p>
                   </div>
                   <div className='cell-container'>
-                    <p className='cell bottom'>US$17.56</p>
+                    <p className='cell bottom'>US${stockDetail.last_price}</p>
                   </div>
                 </div>
                 <div className='header-info-cell'>
@@ -116,7 +138,7 @@ const StockDetail = () => {
                     <p className='cell top'>MARKET CAP</p>
                   </div>
                   <div className='cell-container'>
-                    <p className='cell bottom'>US$2.4b</p>
+                    <p className='cell bottom'>US${stockDetail.market_cap}</p>
                   </div>
                 </div>
                 <div className='header-info-cell'>
@@ -124,7 +146,7 @@ const StockDetail = () => {
                     <p className='cell top'>7D</p>
                   </div>
                   <div className='cell-container'>
-                    <p className='cell bottom percent'>-0.6%</p>
+                    <p className={`cell bottom percent ${stockDetail.sevend_value < 0 ? 'negative' : 'positive'}`}>{stockDetail.sevend_value}%</p>
                   </div>
                 </div>
                 <div className='header-info-cell'>
@@ -132,16 +154,15 @@ const StockDetail = () => {
                     <p className='cell top'>1Y</p>
                   </div>
                   <div className='cell-container'>
-                    <p className='cell bottom percent'>-19.2%</p>
+                    <p className={`cell bottom percent ${stockDetail.oney_value < 0 ? 'negative' : 'positive'}`}>{stockDetail.oney_value}%</p>
                   </div>
                 </div>
                 <div className='header-info-cell'>
                   <div className='cell-container'>
-                    <p className='cell top'>MY FAIR VALUE</p>
+                    <p className='cell top'>Investor Score</p>
                   </div>
                   <div className='cell-container'>
-                    <span className='cell bottom value'>Select narrative</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="pen-image"><path fillRule="evenodd" clipRule="evenodd" d="M16.5607 6.26777C15.9749 5.68198 15.0251 5.68198 14.4393 6.26777L13.2071 7.5L16.5 10.7929L17.7322 9.56066C18.318 8.97488 18.318 8.02513 17.7322 7.43934L16.5607 6.26777ZM15.7929 11.5L12.5 8.20711L5 15.7071V19H8.29289L15.7929 11.5ZM13.7322 5.56066C14.7085 4.58435 16.2915 4.58435 17.2678 5.56066L18.4393 6.73224C19.4157 7.70855 19.4156 9.29146 18.4393 10.2678L8.85355 19.8536C8.75979 19.9473 8.63261 20 8.5 20H4.5C4.22386 20 4 19.7761 4 19.5V15.2929L13.7322 5.56066ZM12 19.5C12 19.2239 12.2239 19 12.5 19H17.5C17.7761 19 18 19.2239 18 19.5C18 19.7761 17.7761 20 17.5 20H12.5C12.2239 20 12 19.7761 12 19.5Z"></path></svg>
+                    <p className='cell bottom percent'>{stockDetail.score}</p>
                   </div>
                 </div>
                 <div className='price-chart-container'>
@@ -153,7 +174,7 @@ const StockDetail = () => {
                       <p className='cell top'>UPDATED</p>
                     </div>
                     <div className='cell-container'>
-                      <p className='cell right'> 03 Feb, 2025</p>
+                      <p className='cell right'>{formatDate()}</p>
                     </div>
                   </div>
                   <div className='info-final-container1'>
@@ -192,11 +213,11 @@ const StockDetail = () => {
               </div>
               <div className='snowflake-detail'>
                 <div className='snowflake-wrapper'>
-                  <p className='company-name'>Tripadvisor, Inc.
+                  <p className='company-name'>{stockDetail.name}, Inc.
                     <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" className="sc-h7xi2g-0 gedxnB"><path fillRule="evenodd" d="M9 3h10a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-1V7a2 2 0 0 0-2-2H8V4a1 1 0 0 1 1-1Zm9 16v-1h1a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v1H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2ZM16 6H6a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1Zm-8.005 8.591.707-.707a1 1 0 0 1 .966-.259l-.259.26a.5.5 0 1 0 .707.706l.26-.259a1 1 0 0 1-.26.966l-.707.707a1 1 0 1 1-1.414-1.414Zm0-1.414a2.001 2.001 0 0 1 2.43-.309l.443-.443a2.001 2.001 0 0 1 .309-2.43l.707-.707a2 2 0 0 1 2.828 2.828l-.707.707a2.001 2.001 0 0 1-2.43.31l-.443.442c.453.767.35 1.772-.309 2.43l-.707.708a2 2 0 0 1-2.828-2.829l.707-.707Zm4.596-1.06-.259.258a1 1 0 0 0 .966-.259l.707-.707a1 1 0 0 0-1.414-1.414l-.707.707a1 1 0 0 0-.259.966l.259-.259a.5.5 0 1 1 .707.707Z" clipRule="evenodd"></path></svg></span>
                   </p>
-                  <p className='snowflake-text title'>NasdaqGS:TRIP Stock Report</p>
-                  <p className='snowflake-text market-cup'>Market Cap: US$2.4b</p>
+                  <p className='snowflake-text title'>{stockDetail.description}</p>
+                  <p className='snowflake-text market-cup'>Market Cap: US${stockDetail.market_cap}</p>
                 </div>
                 <section className='watchlist-sidebar'>
                   <button className='stock-header-button watchlist'>
@@ -229,161 +250,18 @@ const StockDetail = () => {
           <article className='company-report'>
             <div className='detail-section-container'>
               <section className='detail-section' ref={el => sectionsRef.current[0] = el}>
-                <div className='outline'>
-                  <h2 className='header-section parent index'>1</h2>
-                  <h2 className='header-section parent'>Company Summary</h2>
-                </div>
-                <p>
-                  Tripadvisor (NASDAQ: TRIP) is a leading online travel platform that provides user-
-                  generated reviews, price comparisons, and travel-related content for
-                  accommodations, restaurants, experiences, and flights. The company operates a
-                  website and mobile app that allow travelers to research destinations, book hotels
-                  and activities, and read millions of reviews from other users. Tripadvisor also
-                  offers business solutions, including advertising and subscription-based services for
-                  travel-related businesses. Its revenue primarily comes from click-based
-                  advertising, hotel bookings, and experiences and dining reservations.
-                </p>
-                <hr />
-                <div className='outline'>
-                  <h2 className='header-section child index'>1.1</h2>
-                  <h2 className='header-section child'>A Potential Turning Point for a Past Value Trap</h2>
-                </div>
-                <p>
-                  For years, TripAdvisor (TRIP) has been seen as a value trap, weighed down by an
-                  underperforming core business and slow-to-scale growth initiatives. However, the
-                  company is at an inflection point where restructuring, strategic interest from
-                  bidders, and AI-driven opportunities could unlock significant upside. With shares
-                  trading at approximately $17.28 as of January 31, 2025, several catalysts make this
-                  a compelling investment.
-                </p>
-                <hr />
-                <div className='outline'>
-                  <h2 className='header-section child index'>1.2</h2>
-                  <h2 className='header-section child'>Key Growth Driver: Viator’s Monetization Success</h2>
-                </div>
-                <p>
-                  A major breakthrough occurred in Q3 when Viator, TripAdvisor’s experience-
-                  booking business, generated more revenue than its core brand for the first time.
-                  This suggests a new path for monetizing TripAdvisor’s high-traffic platform,
-                  something it has historically struggled with. If Viator continues to grow its
-                  profitability, it could become the engine that revitalizes TripAdvisor’s business
-                  model.
-                </p>
-                <hr />
-                <div className='outline'>
-                  <h2 className='header-section child index'>1.3</h2>
-                  <h2 className='header-section child'>Upcoming Restructuring to Unlock Value</h2>
-                </div>
-                <p>
-                  TripAdvisor is currently undergoing a major restructuring that will:
-                </p>
-                <div className='sub-section'>
-                  <p>
-                    • Retire ~20% of shares using $393M in cash, reducing total shares from 139M to 116M.
-                  </p>
-                  <p>
-                    • Eliminate its complex ownership structure, removing Liberty TripAdvisor as a controlling shareholder.
-                  </p>
-                  <p>
-                    • Position the company as an easier acquisition target for financial and
-                    strategic buyers.
-                  </p>
-                </div>
-                <p>
-                  By simplifying its corporate structure and eliminating debt complexities, TRIP
-                  becomes a more attractive target for buyers. In fact, multiple bids in the $25-$30
-                  range were made in early 2024 but fell through due to the previous complexity.
-                </p>
-                <hr />
-                <div className='outline'>
-                  <h2 className='header-section child index'>1.4</h2>
-                  <h2 className='header-section child'>M&A Potential: Strategic Bidders in Play</h2>
-                </div>
-                <p>
-                  Recent bid activity suggests continued interest in an acquisition:
-                </p>
-                <div className='sub-section'>
-                  <p>
-                    • October 2024: Strategic bidder offers $17.50 per share in cash.
-                  </p>
-                  <p>
-                    • December 2024: The bid increases to $18.00-$19.00 per share.
-                  </p>
-                  <p>
-                    • January 2025: A renewed offer values the company in the $18.00-$19.00
-                    per share range.
-                  </p>
-                </div>
-                <p>
-                  TripAdvisor’s board has rejected these offers, likely signaling that they are holding
-                  out for a price in the low-to-mid $20s. If a deal emerges post-restructuring,
-                  shareholders could see a 30%+ return from current levels.
-                </p>
-                <hr />
-                <div className='outline'>
-                  <h2 className='header-section child index'>1.5</h2>
-                  <h2 className='header-section child'>AI and Data Monetization Potential</h2>
-                </div>
-                <p>
-                  TripAdvisor is exploring AI-related revenue streams, including a recent partnership
-                  with Perplexity for AI-powered travel searches, estimated to generate $10M in
-                  revenue. Additionally, OpenAI is collaborating with TripAdvisor on a travel booking
-                  assistant. These moves highlight the company’s valuable dataset and its potential
-                  to monetize it in the AI-driven search era.
-                </p>
-                <hr />
-                <div className='outline'>
-                  <h2 className='header-section child index'>1.6</h2>
-                  <h2 className='header-section child'>Downside Protection: Solid Business Even Without a Deal</h2>
-                </div>
-                <p>
-                  Even if an acquisition doesn’t materialize, TripAdvisor is positioned for stable growth:
-                </p>
-                <div className='sub-section'>
-                  <p>
-                    • Viator and TheFork (its restaurant booking business) are showing strong
-                    year-over-year traffic growth.
-                  </p>
-                  <p>
-                    • Management is focused on improving user engagement and
-                    monetization through better in-app experiences, particularly in hotel
-                    bookings.
-                  </p>
-                  <p>
-                    • The company is trading at 6.6x EV/EBITDA, which is low relative to
-                    historical industry multiples.
-                  </p>
-                </div>
-                <hr />
-                <div className='outline'>
-                  <h2 className='header-section child index'>1.7</h2>
-                  <h2 className='header-section child'>Risks to Consider</h2>
-                </div>
-                <div className='sub-section'>
-                  <p>
-                    • A strategic bidder walking away could delay a significant rerating.
-                  </p>
-                  <p>
-                    • Google’s SEO algorithm changes could reduce organic traffic.
-                  </p>
-                  <p>
-                    • Further deterioration in the hotel meta business (its lead generation
-                    service for OTAs like Booking and Expedia).
-                  </p>
-                </div>
-                <hr />
-                <div className='outline'>
-                  <h2 className='header-section child index'>1.8</h2>
-                  <h2 className='header-section child'>Conclusion: Strong Upside with Multiple Catalysts</h2>
-                </div>
-                <p>
-                  With a potential acquisition post-restructuring, a strengthening Viator business,
-                  and monetization opportunities in AI, TripAdvisor offers a compelling investment
-                  case at current levels. Whether through a buyout at a 50%+ premium or
-                  continued operational improvements, TRIP is positioned to deliver strong returns,
-                  particularly as we see improving alternative data signals from web traffic visits and
-                  user conversions.
-                </p>
+                {stockDetail.detail && stockDetail.detail
+                  .filter(detail_text => detail_text.category === 'company')
+                  .map((detail_text, index) => (
+                    <>
+                      {index > 0 && <hr />}
+                      <div className='outline'>
+                        <h2 className={`header-section ${index === 0 ? 'parent' : 'child'} index`}>{index === 0 ? 1 : `1.${index}`}</h2>
+                        <h2 className={`header-section ${index === 0 ? 'parent' : 'child'}`}>{detail_text.title}</h2>
+                      </div>
+                      <p dangerouslySetInnerHTML={{ __html: detail_text.content.replace(/\n/g, '<br>') }} />
+                    </>
+                  ))}
               </section>
               <section className='detail-section' ref={el => sectionsRef.current[1] = el}>
                 <div className='outline'>
@@ -409,11 +287,19 @@ const StockDetail = () => {
                   />
                 </div>
               </section>
-              <section className='detail-section' ref={el => sectionsRef.current[2] = el}>
-                <div className='outline'>
-                  <h2 className='header-section parent index'>3</h2>
-                  <h2 className='header-section parent'>Core Thesis- Shortened</h2>
-                </div>
+              <section className='detail-section' ref={el => sectionsRef.current[0] = el}>
+                {stockDetail.detail && stockDetail.detail
+                  .filter(detail_text => detail_text.category === 'core')
+                  .map((detail_text, index) => (
+                    <>
+                      {index > 0 && <hr />}
+                      <div className='outline'>
+                        <h2 className={`header-section ${index === 0 ? 'parent' : 'child'} index`}>{index === 0 ? 3 : `3.${index}`}</h2>
+                        <h2 className={`header-section ${index === 0 ? 'parent' : 'child'}`}>{detail_text.title}</h2>
+                      </div>
+                      <p dangerouslySetInnerHTML={{ __html: detail_text.content.replace(/\n/g, '<br>') }} />
+                    </>
+                  ))}
               </section>
               <section className='detail-section' ref={el => sectionsRef.current[3] = el}>
                 <div className='outline'>

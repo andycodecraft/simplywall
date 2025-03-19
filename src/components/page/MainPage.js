@@ -56,33 +56,6 @@ const MainPage = () => {
     };
 
     useEffect(() => {
-        const target = observerTarget.current; // Get the current observer target element
-
-        if (!target) return;
-
-        if (observer.current) {
-            observer.current.disconnect();
-        }
-
-        observer.current = new IntersectionObserver(
-            (entries) => {
-                if (entries[0].isIntersecting) {
-                    loadMoreItems();
-                }
-            },
-            { threshold: 1.0 }
-        );
-
-        observer.current.observe(target);
-
-        return () => {
-            if (observer.current) {
-                observer.current.disconnect();
-            }
-        };
-    }, [page]);
-
-    useEffect(() => {
         if (discover.current) {
             discover.current.click();
         }
@@ -111,12 +84,7 @@ const MainPage = () => {
                 <section className='section-container'>
                     <Routes>
                         <Route path="/" element={
-                            <Discover
-                                images={images}
-                                investingRef={investingRef}
-                                observerTarget={observerTarget}
-                                visibleItems={visibleItems}
-                            />} />
+                            <Discover />} />
                         <Route path="/detail/:stock_id" element={
                             <StockDetail />
                         } />

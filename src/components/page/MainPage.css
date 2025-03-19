@@ -97,7 +97,7 @@
 .sticky-bar {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     position: sticky;
-    top: 57px;
+    top: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -793,6 +793,11 @@ canvas {
 
 .disable-link {
     opacity: 0.3;
+}
+
+.download-link {
+    color: #007bff !important;
+    padding-left: 18px;
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1200px) {

@@ -1,15 +1,57 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { getStocks, getTopStocks } from 'helpers/api'
+import { getEncryptData } from 'helpers/url';
+import { apiPath } from 'config';
+import { Link } from 'react-router-dom';
+import logo from 'assets/image/download.svg'
 import './MainPage.css'
 
-const Discover = ({ images, observerTarget, visibleItems }) => {
+const Discover = () => {
   const [activeTab, setActiveTab] = useState('top');
+  const [stocks, setStocks] = useState([]);
+  const [topStocks, setTopStocks] = useState([]);
+  const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
 
   const tablistfunc = (evt, tab) => {
-    console.log('sdfsdf')
     evt.preventDefault();
     setActiveTab(tab);
   }
+
+  const importAll = (r) => {
+    let images = {};
+    r.keys().forEach((item) => {
+      images[item.replace('./', '')] = r(item);
+    });
+    return images;
+  };
+
+  const images = importAll(require.context('assets/image', false, /\.avif$/));
+  useEffect(() => {
+    const fetchStocks = async () => {
+      try {
+        const response = await getStocks();
+        setStocks(response);
+      } catch (err) {
+        setError(err);
+        console.log(error);
+      }
+    };
+
+    const fetchTopStocks = async () => {
+      try {
+        const response = await getTopStocks();
+        setTopStocks(response);
+      } catch (err) {
+        setError(err);
+        console.log(error);
+      }
+    }
+
+    fetchStocks();
+    fetchTopStocks();
+  }, []);
 
   return (
     <>
@@ -39,19 +81,19 @@ const Discover = ({ images, observerTarget, visibleItems }) => {
           <div className='idea-list-wrap'>
             <div className='idea-list-container'>
               <div className='idea-list'>
-                {visibleItems.map((key, index) => (
-                  <a
-                    key={key}
-                    href={`/main/detail/${index + 1}`}
+                {topStocks.map((topStock, index) => (
+                  <Link
+                    key={`topstock-link-${topStock._id}`}
+                    to={`/main/detail/${getEncryptData(topStock._id)}`}
                     className="list-grid-container"
                   >
                     <div className="list-grid">
                       <div className="list-image">
-                        <img src={images[key]} className="main-img" alt={key} />
+                        <img src={images[`top-stock-${index + 1}.avif`]} className="main-img" alt={`top-stock-${index + 1}.avif`} />
                       </div>
                       <div className="idea-description">
                         <div className="description">
-                          Tripadvisor
+                          {topStock.name}
                         </div>
                         <div className="compass-container">
                           <svg
@@ -104,16 +146,9 @@ const Discover = ({ images, observerTarget, visibleItems }) => {
                         <p className="pampanies-number">+682 companies</p>
                       </div>
                     </div>
-                  </a>
+                  </Link>
                 ))}
               </div>
-              {visibleItems.length < Object.keys(images).length && (
-                <div
-                  ref={observerTarget} // Attach the ref to the observer target
-                  className="observer-target"
-                  style={{ height: '10px' }}
-                ></div>
-              )}
             </div>
           </div>
         </div>
@@ -143,342 +178,71 @@ const Discover = ({ images, observerTarget, visibleItems }) => {
               </tr>
             </thead>
             <tbody>
-              <tr className='stocks-table-row'>
-                <td>
-                  <a href="/main/stocks/" className="stock-link">
-                    <div className="stock-image-container">
-                      <div className="stock-image-subcontainer">
-                        <div className='stock-image-child-container'>
-                          <div className='stock-canvas-container'>
-                            <canvas width="96" height="96"></canvas>
-                          </div>
-                          <div className='stock-image-container'>
-                            <svg width="100%" viewBox="0 0 240 240" fill="none"><g transform="translate(120, 16)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(22, 88)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(218, 88)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(58, 205)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(182, 205)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g></svg>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </td>
-                <td className='company-info-container'>
-                  <div className='company-link'>
-                    <div className='company-link-container'>
-                      <div className='company-link-style'>AAPL</div>
-                    </div>
-                    <span className='cell-intro'>
-                      Apple
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$220.27</div>
-                  <span className="cell-intro">13.7% OVERVALUED</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$193.80</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='positive'>3.3%</div>
-                  <span className="cell-intro">+US$84.24</span>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='positive'>3.3%</div>
-                  <span className="cell-intro">+US$84.24</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$2,643</div>
-                  <span className="cell-intro">US$252</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">Download</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='disable-link'>n/a</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='disable-link'></div>
-                </td>
-              </tr>
-              <tr className='stocks-table-row'>
-                <td>
-                  <a href="/main/stocks/" className="stock-link">
-                    <div className="stock-image-container">
-                      <div className="stock-image-subcontainer">
-                        <div className='stock-image-child-container'>
-                          <div className='stock-canvas-container'>
-                            <canvas width="96" height="96"></canvas>
-                          </div>
-                          <div className='stock-image-container'>
-                            <svg width="100%" viewBox="0 0 240 240" fill="none"><g transform="translate(120, 16)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(22, 88)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(218, 88)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(58, 205)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(182, 205)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g></svg>
+              {stocks.length > 0 && stocks.map((stock, index) => (
+                <tr className='stocks-table-row' key={`stock-${index}`}>
+                  <td>
+                    <a href="/main/stocks/" className="stock-link">
+                      <div className="stock-image-container">
+                        <div className="stock-image-subcontainer">
+                          <div className='stock-image-child-container'>
+                            <div className='stock-canvas-container'>
+                              <canvas width="96" height="96"></canvas>
+                            </div>
+                            <div className='stock-image-container'>
+                              <svg width="100%" viewBox="0 0 240 240" fill="none"><g transform="translate(120, 16)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(22, 88)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(218, 88)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(58, 205)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(182, 205)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g></svg>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </a>
-                </td>
-                <td className='company-info-container'>
-                  <div className='company-link'>
-                    <div className='company-link-container'>
-                      <div className='company-link-style'>AMD</div>
-                    </div>
-                    <span className='cell-intro'>
-                      Advanced...
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$164.32</div>
-                  <span className="cell-intro">35.0% OVERVALUED</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$121.73</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='positive'>4.3%</div>
-                  <span className="cell-intro">+US$2,855</span>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='positive'>383.3%</div>
-                  <span className="cell-intro">+US$4,865</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$69,719</div>
-                  <span className="cell-intro">US$14,314</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">Download</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='disable-link'>n/a</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='disable-link'></div>
-                </td>
-              </tr>
-              <tr className='stocks-table-row'>
-                <td>
-                  <a href="/main/stocks/" className="stock-link">
-                    <div className="stock-image-container">
-                      <div className="stock-image-subcontainer">
-                        <div className='stock-image-child-container'>
-                          <div className='stock-canvas-container'>
-                            <canvas width="96" height="96"></canvas>
-                          </div>
-                          <div className='stock-image-container'>
-                            <svg width="100%" viewBox="0 0 240 240" fill="none"><g transform="translate(120, 16)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(22, 88)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(218, 88)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(58, 205)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(182, 205)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g></svg>
-                          </div>
-                        </div>
+                    </a>
+                  </td>
+                  <td className='company-info-container'>
+                    <div className='company-link'>
+                      <div className='company-link-container'>
+                        <div className='company-link-style'>{stock.symbol_ticker}</div>
                       </div>
+                      <span className='cell-intro'>
+                        {stock.company_name}
+                      </span>
                     </div>
-                  </a>
-                </td>
-                <td className='company-info-container'>
-                  <div className='company-link'>
-                    <div className='company-link-container'>
-                      <div className='company-link-style'>AMZN</div>
+                  </td>
+                  <td>
+                    <div tabIndex="-1">US${stock.stock_price}</div>
+                    <span className="cell-intro"></span>
+                  </td>
+                  <td>
+                    <div tabIndex="-1">{stock.sub_industry}</div>
+                  </td>
+                  <td>
+                    <div tabIndex="-1" className='positive'>{stock.est_upside}%</div>
+                    <span className="cell-intro"></span>
+                  </td>
+                  <td>
+                    <div tabIndex="-1" className={stock.return_rating < 0 ? 'negative' : 'positive'}>{stock.return_rating}%</div>
+                    <span className="cell-intro"></span>
+                  </td>
+                  <td>
+                    <div tabIndex="-1">US${stock.market_cap.toLocaleString()}</div>
+                    <span className="cell-intro"></span>
+                  </td>
+                  <td>
+                    <div tabIndex="-1">
+                      <a 
+                      href={`${apiPath}/downloadPDF?fileKey=${encodeURIComponent(stock.pdf_file)}`}
+                      className='download-link'
+                      >
+                        <img src={logo} width="25" alt="" className="logo-images" />
+                      </a>
                     </div>
-                    <span className='cell-intro'>
-                      Amazon.com
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$200.00</div>
-                  <span className="cell-intro">39.6% UNDERVALUED</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$330.89</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='positive'>3.3%</div>
-                  <span className="cell-intro">+US$786</span>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='positive'>1,566.7%</div>
-                  <span className="cell-intro">+US$23,124</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$24,600</div>
-                  <span className="cell-intro">US$1,476</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">Download</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='disable-link'>n/a</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='disable-link'></div>
-                </td>
-              </tr>
-              <tr className='stocks-table-row'>
-                <td>
-                  <a href="/main/stocks/" className="stock-link">
-                    <div className="stock-image-container">
-                      <div className="stock-image-subcontainer">
-                        <div className='stock-image-child-container'>
-                          <div className='stock-canvas-container'>
-                            <canvas width="96" height="96"></canvas>
-                          </div>
-                          <div className='stock-image-container'>
-                            <svg width="100%" viewBox="0 0 240 240" fill="none"><g transform="translate(120, 16)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(22, 88)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(218, 88)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(58, 205)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(182, 205)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g></svg>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </td>
-                <td className='company-info-container'>
-                  <div className='company-link'>
-                    <div className='company-link-container'>
-                      <div className='company-link-style'>GOOGL</div>
-                    </div>
-                    <span className='cell-intro'>
-                      Alphabet
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$185.24</div>
-                  <span className="cell-intro">11.2% UNDERVALUED</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$208.62</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='positive'>0.7%</div>
-                  <span className="cell-intro">+US$53.04</span>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='positive'>85.2%</div>
-                  <span className="cell-intro">+US$3,324</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$7,724</div>
-                  <span className="cell-intro">US$3,900</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">Download</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='disable-link'>n/a</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='disable-link'></div>
-                </td>
-              </tr>
-              <tr className='stocks-table-row'>
-                <td>
-                  <a href="/main/stocks/" className="stock-link">
-                    <div className="stock-image-container">
-                      <div className="stock-image-subcontainer">
-                        <div className='stock-image-child-container'>
-                          <div className='stock-canvas-container'>
-                            <canvas width="96" height="96"></canvas>
-                          </div>
-                          <div className='stock-image-container'>
-                            <svg width="100%" viewBox="0 0 240 240" fill="none"><g transform="translate(120, 16)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(22, 88)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(218, 88)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(58, 205)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(182, 205)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g></svg>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </td>
-                <td className='company-info-container'>
-                  <div className='company-link'>
-                    <div className='company-link-container'>
-                      <div className='company-link-style'>META</div>
-                    </div>
-                    <span className='cell-intro'>
-                      Meta...
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$509.50</div>
-                  <span className="cell-intro">13.0% UNDERVALUED</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$585.85</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='negative'>-0.7%</div>
-                  <span className="cell-intro">+US$123</span>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='positive'>154.8%</div>
-                  <span className="cell-intro">+US$10,523</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$69,719</div>
-                  <span className="cell-intro">+US$14,314</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">Download</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='disable-link'>n/a</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='disable-link'></div>
-                </td>
-              </tr>
-              <tr className='stocks-table-row'>
-                <td>
-                  <a href="/main/stocks/" className="stock-link">
-                    <div className="stock-image-container">
-                      <div className="stock-image-subcontainer">
-                        <div className='stock-image-child-container'>
-                          <div className='stock-canvas-container'>
-                            <canvas width="96" height="96"></canvas>
-                          </div>
-                          <div className='stock-image-container'>
-                            <svg width="100%" viewBox="0 0 240 240" fill="none"><g transform="translate(120, 16)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(22, 88)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(218, 88)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(58, 205)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(182, 205)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g></svg>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </td>
-                <td className='company-info-container'>
-                  <div className='company-link'>
-                    <div className='company-link-container'>
-                      <div className='company-link-style'>MSFT</div>
-                    </div>
-                    <span className='cell-intro'>
-                      Microsoft
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$459.28</div>
-                  <span className="cell-intro">7.3% UNDERVALUED</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$495.50</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='positive'>1.6%</div>
-                  <span className="cell-intro">+US$1,666</span>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='positive'>273.4%</div>
-                  <span className="cell-intro">+US$78,690</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">US$107,472</div>
-                  <span className="cell-intro">+US$28,782</span>
-                </td>
-                <td>
-                  <div tabIndex="-1">Download</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='disable-link'>n/a</div>
-                </td>
-                <td>
-                  <div tabIndex="-1" className='disable-link'></div>
-                </td>
-              </tr>
+                  </td>
+                  <td>
+                    <div tabIndex="-1" className='disable-link'>n/a</div>
+                  </td>
+                  <td>
+                    <div tabIndex="-1" className='disable-link'></div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

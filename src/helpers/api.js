@@ -60,3 +60,30 @@ export const checkoutStripe = async (priceId) => {
     throw error;
   }
 }
+
+export const getStocks = async () => {
+  try {
+    const response = await axios.post(`${config.apiPath}/getStocks`);
+    return response.data.response;
+  } catch (error) {
+    throw error.message;
+  }
+};
+
+export const getTopStocks = async (email) => {
+  try {
+    const response = await axios.post(`${config.apiPath}/getTopStocks`);
+    return response.data.response;
+  } catch (error) {
+    throw error.message;
+  }
+};
+
+export const getTopStockById = async (stock_id) => {
+  try {
+    const response = await axios.post(`${config.apiPath}/getTopStockById`, {stock_id});
+    return response.data.response;
+  } catch (error) {
+    throw error.message;
+  }
+};

@@ -51,12 +51,12 @@ const Header = ({ handleSignupOpenDialog, session, setSession }) => {
     <div className='nav-bar-wrap'>
       <header className='nav-header'>
         <div className='nav-bar-container relative'>
-          <div className='simply-wall-logo-header'>
-          <a href="/" className="brand w-nav-brand">
-            <img src={logo} width="55" alt="" className="logo-image" />
-          </a>
-          </div>
           <nav className='header-bar'>
+            <div className='simply-wall-logo-header'>
+              <a href="/" className="brand w-nav-brand">
+                <img src={logo} width="55" alt="" className="logo-image" />
+              </a>
+            </div>
             <div className='nav-list-container'>
             </div>
             <div className='search-login-container'>
