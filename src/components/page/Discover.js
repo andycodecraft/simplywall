@@ -158,88 +158,61 @@ const Discover = () => {
           <table className='stocks-table'>
             <thead className='stocks-table-header'>
               <tr>
-                <th className='table-header-empty'></th>
-                <th className='table-header-company'>Symbol</th>
-                <th>Last Price</th>
-                <th>
-                  Fair Value
-                  <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" tabIndex="0"><path fillRule="evenodd" clipRule="evenodd" d="M5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM13 8V10H11V8H13ZM13 16V11H11V16H13Z" fill="rgba(255, 255, 255, 0.5)"></path></svg>
-                </th>
-                <th>7D Return</th>
-                <th>Total Return</th>
-                <th>
-                  Value & Cost
-                </th>
-                <th>
-                  Download
-                </th>
-                <th>Div Yield</th>
-                <th></th>
+                <th className='table-header-company'>Company Name</th>
+                <th>Symbol/Ticker</th>
+                <th>AI Advisor Rating</th>
+                <th>Advice Type</th>
+                <th>$ Stock Price</th>
+                <th>$ Market Cap</th>
+                <th>Sub-Industry</th>
+                <th>Risk Level</th>
+                <th>Est. % Upside</th>
+                <th>% Return Since Write-Up</th>
+                <th>Download</th>
               </tr>
             </thead>
             <tbody>
               {stocks.length > 0 && stocks.map((stock, index) => (
                 <tr className='stocks-table-row' key={`stock-${index}`}>
                   <td>
-                    <a href="/main/stocks/" className="stock-link">
-                      <div className="stock-image-container">
-                        <div className="stock-image-subcontainer">
-                          <div className='stock-image-child-container'>
-                            <div className='stock-canvas-container'>
-                              <canvas width="96" height="96"></canvas>
-                            </div>
-                            <div className='stock-image-container'>
-                              <svg width="100%" viewBox="0 0 240 240" fill="none"><g transform="translate(120, 16)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(22, 88)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(218, 88)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(58, 205)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g><g transform="translate(182, 205)"><circle r="6" fill="rgba(255,255,255,0.25)"></circle></g></svg>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
+                    <div tabIndex="-1">{stock.company_name}</div>
                   </td>
-                  <td className='company-info-container'>
-                    <div className='company-link'>
-                      <div className='company-link-container'>
-                        <div className='company-link-style'>{stock.symbol_ticker}</div>
-                      </div>
-                      <span className='cell-intro'>
-                        {stock.company_name}
-                      </span>
-                    </div>
+                  <td className='cell-ideas'>
+                    <div className='company-link-style'>{stock.symbol_ticker}</div>
                   </td>
-                  <td>
-                    <div tabIndex="-1">US${stock.stock_price}</div>
-                    <span className="cell-intro"></span>
+                  <td className='cell-ideas'>
+                    <div className='positive'>{stock.ai_rating}</div>
                   </td>
-                  <td>
+                  <td className='cell-ideas'>
+                    <div tabIndex="-1">{stock.advice_type}</div>
+                  </td>
+                  <td className='cell-ideas'>
+                    <div tabIndex="-1">${stock.stock_price}</div>
+                  </td>
+                  <td className='cell-ideas'>
+                    <div tabIndex="-1">${stock.market_cap.toLocaleString()}</div>
+                  </td>
+                  <td className='cell-ideas'>
                     <div tabIndex="-1">{stock.sub_industry}</div>
                   </td>
-                  <td>
-                    <div tabIndex="-1" className='positive'>{stock.est_upside}%</div>
-                    <span className="cell-intro"></span>
+                  <td className='cell-ideas'>
+                    <div tabIndex="-1">{stock.risk_level}</div>
                   </td>
-                  <td>
-                    <div tabIndex="-1" className={stock.return_rating < 0 ? 'negative' : 'positive'}>{stock.return_rating}%</div>
-                    <span className="cell-intro"></span>
+                  <td className='cell-ideas'>
+                    <div tabIndex="-1" className={stock.est_upside > 0 ? 'positive' : 'negative'}>{stock.est_upside}%</div>
                   </td>
-                  <td>
-                    <div tabIndex="-1">US${stock.market_cap.toLocaleString()}</div>
-                    <span className="cell-intro"></span>
+                  <td className='cell-ideas'>
+                    <div tabIndex="-1" className={stock.return_rating > 0 ? 'positive' : 'negative'}>{stock.return_rating}%</div>
                   </td>
-                  <td>
+                  <td className='cell-ideas'>
                     <div tabIndex="-1">
-                      <a 
-                      href={`${apiPath}/downloadPDF?fileKey=${encodeURIComponent(stock.pdf_file)}`}
-                      className='download-link'
+                      <a
+                        href={`${apiPath}/downloadPDF?fileKey=${encodeURIComponent(stock.pdf_file)}`}
+                        className='download-link'
                       >
                         <img src={logo} width="25" alt="" className="logo-images" />
                       </a>
                     </div>
-                  </td>
-                  <td>
-                    <div tabIndex="-1" className='disable-link'>n/a</div>
-                  </td>
-                  <td>
-                    <div tabIndex="-1" className='disable-link'></div>
                   </td>
                 </tr>
               ))}

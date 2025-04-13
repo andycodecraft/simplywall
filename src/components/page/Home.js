@@ -73,7 +73,7 @@ const Home = () => {
           <div className='home-bro-content'>
             <div className='hero-text home'>
               <h1 className='home-header'>
-                <span className='normal'>AI-driven research advisor trained on thousands of proprietary hedge</span>
+                <span className='normal'>AI-driven research advisor trained on thousands of proprietary hedge fund stock ideas</span>
               </h1>
               <p className="base">All-in-one platform to improve your returns, trained on the best stock pitches.</p>
               <div className='actions'>
@@ -86,7 +86,7 @@ const Home = () => {
                 >
                   <div className="text-16">Get Started For Free</div>
                 </a>
-                <a href="https://simplywall.st/portfolio/demo" rel="nofollow" className="button-outline on-dark-bg"><div className="text-16">View Top Ideas</div></a>
+                <a href="https://investorsclub.ai/main" rel="nofollow" className="button-outline on-dark-bg"><div className="text-16">View Top Ideas</div></a>
               </div>
             </div>
             <div className='video-wrapper home'>

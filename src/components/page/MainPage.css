@@ -773,6 +773,11 @@ canvas {
     line-height: 1.5;
 }
 
+.cell-ideas div{
+    display: flex;
+    justify-content: center;
+}
+
 .cell-intro {
     opacity: 0.5;
     color: hsl(0, 0%, 100%);
@@ -797,7 +802,6 @@ canvas {
 
 .download-link {
     color: #007bff !important;
-    padding-left: 18px;
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1200px) {
