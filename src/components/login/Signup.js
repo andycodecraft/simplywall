@@ -23,7 +23,7 @@ const Signup = ({ setSigninEmail, setIsSignup, setSession, onClose }) => {
         if (res.data.email_verified) {
           const response = await getSignToken(res.data.email);
           localStorage.setItem('token', response.response.token);
-          localStorage.setItem('email', response.response.email);
+          localStorage.setItem('email', res.data.email);
           setSession(response.response.token);
           onClose();
         }

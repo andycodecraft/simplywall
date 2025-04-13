@@ -47,7 +47,7 @@ const SigninEmail = ({ onClose, signinOption, setSession }) => {
         if (res.data.email_verified) {
           const response = await getSignToken(res.data.email);
           localStorage.setItem('token', response.response.token);
-          localStorage.setItem('email', response.data.email);
+          localStorage.setItem('email', res.data.email);
           setSession(response.response.token);
           onClose();
         }
