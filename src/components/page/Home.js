@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import SignInEmail from '../login/SigninEmail';
+import StockAdTable from 'components/utils/StockAdTable';
+
 import './Home.css';
 
 import logo from 'assets/image/logo.svg'
@@ -88,6 +90,7 @@ const Home = () => {
                 </a>
                 <a href="https://investorsclub.ai/main" rel="nofollow" className="button-outline on-dark-bg"><div className="text-16">View Top Ideas</div></a>
               </div>
+              <StockAdTable />
             </div>
             <div className='video-wrapper home'>
               <div className='stock-report-video-embed w-embed'>
