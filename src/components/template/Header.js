@@ -9,7 +9,6 @@ const Header = ({ handleSignupOpenDialog, session, setSession }) => {
   const [menuVisible, setMenuVisible] = useState(false);
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
-  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuVisible((prevVisible) => !prevVisible);
@@ -17,7 +16,6 @@ const Header = ({ handleSignupOpenDialog, session, setSession }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Check if the click is outside the menu and button
       if (
         menuRef.current &&
         !menuRef.current.contains(event.target) &&
@@ -28,12 +26,10 @@ const Header = ({ handleSignupOpenDialog, session, setSession }) => {
       }
     };
 
-    // Add event listener when menu is visible
     if (menuVisible) {
       document.addEventListener('mousedown', handleClickOutside);
     }
 
-    // Cleanup event listener from document
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -41,10 +37,10 @@ const Header = ({ handleSignupOpenDialog, session, setSession }) => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('email');
     console.log('User logged out');
     setSession('');
     setMenuVisible(false);
-    //navigate('/');
   };
 
   return (
@@ -82,6 +78,9 @@ const Header = ({ handleSignupOpenDialog, session, setSession }) => {
                       <nav className='user-menu-bar'>
                         <div className='user-menu'>
                           <ul className='user-menu-list'>
+                            <li>
+                              <a data-cy-id="account-nav-subscription-and-billing" className="user-menu-item">{localStorage.getItem('email')}</a>
+                            </li>
                             <li>
                               <a href="/membership" data-cy-id="account-nav-subscription-and-billing" className="user-menu-item">Plans &amp; Pricing</a>
                             </li>

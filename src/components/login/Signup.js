@@ -23,6 +23,7 @@ const Signup = ({ setSigninEmail, setIsSignup, setSession, onClose }) => {
         if (res.data.email_verified) {
           const response = await getSignToken(res.data.email);
           localStorage.setItem('token', response.response.token);
+          localStorage.setItem('email', response.response.email);
           setSession(response.response.token);
           onClose();
         }
@@ -82,7 +83,7 @@ const Signup = ({ setSigninEmail, setIsSignup, setSession, onClose }) => {
                   Sign in
                 </button>
               </div>
-              <p className="agree-terms">By using Simply Wall St you are agreeing to our <a rel="noopener noreferrer" href="https://simplywall.st/terms-and-conditions" target="_blank" data-cy-id="link-terms-and-conditions" data-focus="solid" className="agree-terms-link">terms and conditions</a>. Simply Wall St provides general investment advice only.</p>
+              <p className="agree-terms">By using Investor's Club you are agreeing to our <a rel="noopener noreferrer" href="https://simplywall.st/terms-and-conditions" target="_blank" data-cy-id="link-terms-and-conditions" data-focus="solid" className="agree-terms-link">terms and conditions</a>. Investor's Club provides general investment advice only.</p>
             </div>
           </div>
         </div>

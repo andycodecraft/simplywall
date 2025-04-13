@@ -20,8 +20,6 @@ const importAll = (requireContext) => {
     return images;
 };
 
-const images = importAll(require.context('../../assets/image', false, /\.(png|jpe?g|avif|gif)$/));
-
 const MainPage = () => {
     const [isSignupDialogOpen, setSignupDialogOpen] = useState(false);
     const [isSigninEmailOpen, setSigninEmailOpen] = useState(false);
@@ -34,26 +32,7 @@ const MainPage = () => {
 
     const handlePremiumSignCloseDialog = () => setPremiumSigninOpen(false);
 
-    const investingRef = useRef(null);
     const discover = useRef(null);
-    const observerTarget = useRef(null);
-
-    const [visibleItems, setVisibleItems] = useState([]);
-    const [page, setPage] = useState(1);
-
-    const observer = useRef();
-
-
-    const itemsPerPage = 20; // Number of items to load per scroll
-
-    const loadMoreItems = () => {
-        const startIndex = (page - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-        const newItems = Object.keys(images).slice(startIndex, endIndex);
-
-        setVisibleItems((prevItems) => [...prevItems, ...newItems]);
-        setPage((prevPage) => prevPage + 1);
-    };
 
     useEffect(() => {
         if (discover.current) {
@@ -64,6 +43,9 @@ const MainPage = () => {
         setSession(token || '');
 
         if (!session) {
+            if (isSigninEmailOpen)
+                return;
+            
             const timer = setTimeout(() => {
                 setPremiumSigninOpen(true);
             }, 5000);
@@ -72,7 +54,7 @@ const MainPage = () => {
                 clearTimeout(timer);
             };
         }
-    }, [session])
+    }, [session, isPremiumSigninOpen, isSigninEmailOpen])
 
     return (
         <div className='main-container'>

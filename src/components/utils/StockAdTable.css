@@ -4,7 +4,7 @@
   border-collapse: collapse;
 }
 
-.stock-ad-table th, td {
+.stock-ad-table th, .stock-ad-table td {
   border: 1px solid #ddd;
   padding: 4px;
   height: 20px;

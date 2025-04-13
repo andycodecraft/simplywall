@@ -44,7 +44,7 @@ const Footer = () => {
                 <img src="https://simplywall.st/cdn-cgi/image/format=auto,fit=cover,q=80,blur=0/https://cdn.prod.website-files.com/648009cb318551f1806b36b4/6487b1b44ebc33f108273875_sp-global-logo.png" width="170" alt="S&amp;P Global Market Intelligence" loading="lazy" />
               </a>
               <p className='copyright-container'>
-                Financial Data provided by S&P Global Market Intelligence LLC, analysis provided by Simply Wall Street Pty Ltd. Copyright © 2025, S&P Global Market Intelligence LLC. All rights reserved.
+                Financial Data provided by S&P Global Market Intelligence LLC, analysis provided by Investor's Club Pty Ltd. Copyright © 2025, S&P Global Market Intelligence LLC. All rights reserved.
               </p>
               <a href="#" className='view-data'>
                 View Data Sources
@@ -87,7 +87,7 @@ const Footer = () => {
                 </ul>
               </div>
               <div className='col-span-1'>
-                <p className='f-list-title'>Simply Wall St</p>
+                <p className='f-list-title'>Investor's Club</p>
                 <ul className='f-list-container'>
                   <li className='f-list'><a href="#" className='f-list-style'>Plans & Pricing</a></li>
                   <li className='f-list'><a href="#" className='f-list-style'>Gift A Subscription</a></li>
@@ -106,10 +106,10 @@ const Footer = () => {
             </div>
             <div className='footer-description-container'>
               <p className='footer-desc'>
-                Simply Wall Street Pty Ltd (ACN 600 056 611), is a Corporate Authorised Representative (Authorised Representative Number: 467183) of Sanlam Private Wealth Pty Ltd (AFSL No. 337927). Any advice contained in this website is general advice only and has been prepared without considering your objectives, financial situation or needs. You should not rely on any advice and/or information contained in this website and before making any investment decision we recommend that you consider whether it is appropriate for your situation and seek appropriate financial, taxation and legal advice. Please read our Financial Services Guide before deciding whether to obtain financial services from us.
+                Investor's Club Pty Ltd (ACN 600 056 611), is a Corporate Authorised Representative (Authorised Representative Number: 467183) of Sanlam Private Wealth Pty Ltd (AFSL No. 337927). Any advice contained in this website is general advice only and has been prepared without considering your objectives, financial situation or needs. You should not rely on any advice and/or information contained in this website and before making any investment decision we recommend that you consider whether it is appropriate for your situation and seek appropriate financial, taxation and legal advice. Please read our Financial Services Guide before deciding whether to obtain financial services from us.
               </p>
               <p className='footer-desc'>
-                © 2025 Simply Wall Street Pty Ltd, US Design Patent #29/544/281, Community and European Design Registration #2845206
+                © 2025 Investor's Club Pty Ltd, US Design Patent #29/544/281, Community and European Design Registration #2845206
               </p>
               <div className='footer-financial-terms-privacy-container'>
                 <a href="#" className='financial-terms-privacy'>Financial Services Guide</a>
