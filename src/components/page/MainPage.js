@@ -84,7 +84,7 @@ const MainPage = () => {
                 signinOption={isSignup}
                 setSession={setSession}
             />}
-            {isPremiumSigninOpen && <SigninPremium
+            {isPremiumSigninOpen && <Signup
                 setSigninEmail={setSigninEmailOpen}
                 setIsSignup={setIsSignup}
                 setSession={setSession}
