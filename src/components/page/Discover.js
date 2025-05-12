@@ -83,8 +83,8 @@ const Discover = () => {
               <div className='idea-list'>
                 {topStocks.map((topStock, index) => (
                   <Link
-                    key={`topstock-link-${topStock._id}`}
-                    to={`/main/detail/${getEncryptData(topStock._id)}`}
+                    key={`topstock-link-${topStock.id}`}
+                    to={`/main/detail/${getEncryptData(topStock.id)}`}
                     className="list-grid-container"
                   >
                     <div className="list-grid">

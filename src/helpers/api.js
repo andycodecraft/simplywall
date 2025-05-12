@@ -6,6 +6,7 @@ import { loadStripe } from '@stripe/stripe-js';
 export const registerUser = async (email, password) => {
   try {
     const response = await axios.post(`${config.apiPath}/signup`, { email, password });
+    console.log(response)
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -82,7 +83,7 @@ export const getTopStocks = async (email) => {
 export const getTopStockById = async (stock_id) => {
   try {
     const response = await axios.post(`${config.apiPath}/getTopStockById`, {stock_id});
-    return response.data.response;
+    return response.data.response[0];
   } catch (error) {
     throw error.message;
   }
