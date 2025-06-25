@@ -18,6 +18,11 @@ const Discover = () => {
     setActiveTab(tab);
   }
 
+  const formatDate = (date) => {
+    const options = { day: '2-digit', month: 'short', year: 'numeric' };
+    return date ? new Date(date).toLocaleDateString('en-US', options) : '';
+  };
+
   useEffect(() => {
     const fetchStocks = async () => {
       try {
@@ -79,15 +84,33 @@ const Discover = () => {
                   >
                     <div className="list-grid">
                       <div className="list-image">
-                        <img src={topStock.base_image} className="main-img" alt={`top-stock-${index + 1}.avif`} />
+                        <img src={topStock.banner_top_image} className="main-img" alt={`top-stock-${index + 1}.avif`} />
                       </div>
                       <div className="idea-description">
                         <div className="description">
                           {topStock.name}
+                          {(topStock.recommendation || topStock.sub_industry || topStock.posted_date) && 
+                            <div className='spacing' />
+                          }
+                          {topStock.recommendation && 
+                            <div className='sub-description'>
+                              Recommendation: {topStock.recommendation}
+                            </div>
+                          }
+                          {topStock.sub_industry && 
+                            <div className='sub-description'>
+                              Sub-Industry: {topStock.sub_industry}
+                            </div>
+                          }
+                          {topStock.posted_date && 
+                            <div className='sub-description'>
+                              Idea posted: {formatDate(topStock.posted_date)}
+                            </div>
+                          }
                         </div>
                         <div className="compass-container">
                           <img
-                            src={topStock.small_image}
+                            src={topStock.banner_bottom_image}
                             className="compass-img"
                           >
                           </img>

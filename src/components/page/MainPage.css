@@ -337,6 +337,17 @@
     width: 100%;
 }
 
+.sub-description {
+    font-weight: 300;
+    font-size: 12px;
+    color: white;
+    width: 100%;
+}
+
+.spacing {
+    margin-top: 10px;
+}
+
 .idea-description {
     width: calc(100% - 48px);
     display: flex;
@@ -801,7 +812,7 @@ canvas {
 }
 
 .download-link {
-    color: #007bff !important;
+    color: white !important;
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1200px) {
