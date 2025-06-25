@@ -13,7 +13,7 @@ const StockDetail = () => {
     { id: '2', label: 'AI Advisor' },
     { id: '3', label: 'Core Thesis - Shortened' },
     { id: '4', label: 'Alternative Data / Signals' },
-    { id: '5', label: 'Counterpoints' },
+    { id: '5', label: 'Valuation & Price Targets' },
     { id: '6', label: 'Download Full Stock Pitch' },
     { id: '7', label: 'User Comments' }
   ];
@@ -274,7 +274,7 @@ const StockDetail = () => {
                         <h2 className={`header-section ${index === 0 ? 'parent' : 'child'} index`}>{index === 0 ? 1 : `1.${index}`}</h2>
                         <h2 className={`header-section ${index === 0 ? 'parent' : 'child'}`}>{detail_text.title}</h2>
                       </div>
-                      <p dangerouslySetInnerHTML={{ __html: detail_text.content.replace(/\n/g, '<br>') }} />
+                      <p dangerouslySetInnerHTML={{ __html: detail_text.content ? detail_text.content.replace(/\n/g, '<br>') : '' }} />
                     </>
                   ))}
                 {stockDetail.detail &&
@@ -321,7 +321,7 @@ const StockDetail = () => {
                         <h2 className={`header-section ${index === 0 ? 'parent' : 'child'} index`}>{index === 0 ? 3 : `3.${index}`}</h2>
                         <h2 className={`header-section ${index === 0 ? 'parent' : 'child'}`}>{detail_text.title}</h2>
                       </div>
-                      <p dangerouslySetInnerHTML={{ __html: detail_text.content.replace(/\n/g, '<br>') }} />
+                      <p dangerouslySetInnerHTML={{ __html: detail_text.content ? detail_text.content.replace(/\n/g, '<br>') : '' }} />
                     </>
                   ))}
                 {stockDetail.detail &&
@@ -339,10 +339,10 @@ const StockDetail = () => {
                     <>
                       {index > 0 && <hr />}
                       <div className='outline'>
-                        <h2 className={`header-section ${index === 0 ? 'parent' : 'child'} index`}>{index === 0 ? 1 : `4.${index}`}</h2>
+                        <h2 className={`header-section ${index === 0 ? 'parent' : 'child'} index`}>{index === 0 ? 4 : `4.${index}`}</h2>
                         <h2 className={`header-section ${index === 0 ? 'parent' : 'child'}`}>{detail_text.title}</h2>
                       </div>
-                      <p dangerouslySetInnerHTML={{ __html: detail_text.content.replace(/\n/g, '<br>') }} />
+                      <p dangerouslySetInnerHTML={{ __html: detail_text.content ? detail_text.content.replace(/\n/g, '<br>') : '' }} />
                     </>
                   ))}
                 {stockDetail.detail &&
@@ -355,22 +355,22 @@ const StockDetail = () => {
               </section>
               <section className='detail-section' ref={el => sectionsRef.current[4] = el}>
                 {stockDetail.detail && stockDetail.detail
-                  .filter(detail_text => detail_text.category === 'Counterpoints')
+                  .filter(detail_text => detail_text.category === 'Valuation & Price Targets')
                   .map((detail_text, index) => (
                     <>
                       {index > 0 && <hr />}
                       <div className='outline'>
-                        <h2 className={`header-section ${index === 0 ? 'parent' : 'child'} index`}>{index === 0 ? 1 : `5.${index}`}</h2>
+                        <h2 className={`header-section ${index === 0 ? 'parent' : 'child'} index`}>{index === 0 ? 5 : `5.${index}`}</h2>
                         <h2 className={`header-section ${index === 0 ? 'parent' : 'child'}`}>{detail_text.title}</h2>
                       </div>
-                      <p dangerouslySetInnerHTML={{ __html: detail_text.content.replace(/\n/g, '<br>') }} />
+                      <p dangerouslySetInnerHTML={{ __html: detail_text.content ? detail_text.content.replace(/\n/g, '<br>') : '' }} />
                     </>
                   ))}
                 {stockDetail.detail &&
-                  stockDetail.detail.filter(detail_text => detail_text.category === 'Counterpoints').length === 0 && (
+                  stockDetail.detail.filter(detail_text => detail_text.category === 'Valuation & Price Targets').length === 0 && (
                     <div className='outline'>
                       <h2 className='header-section parent index'>5</h2>
-                      <h2 className='header-section parent'>Counterpoints</h2>
+                      <h2 className='header-section parent'>Valuation & Price Targets</h2>
                     </div>
                   )}
               </section>
@@ -381,10 +381,10 @@ const StockDetail = () => {
                     <>
                       {index > 0 && <hr />}
                       <div className='outline'>
-                        <h2 className={`header-section ${index === 0 ? 'parent' : 'child'} index`}>{index === 0 ? 1 : `6.${index}`}</h2>
+                        <h2 className={`header-section ${index === 0 ? 'parent' : 'child'} index`}>{index === 0 ? 6 : `6.${index}`}</h2>
                         <h2 className={`header-section ${index === 0 ? 'parent' : 'child'}`}>{detail_text.title}</h2>
                       </div>
-                      <p dangerouslySetInnerHTML={{ __html: detail_text.content.replace(/\n/g, '<br>') }} />
+                      <p dangerouslySetInnerHTML={{ __html: detail_text.content ? detail_text.content.replace(/\n/g, '<br>') : '' }} />
                     </>
                   ))}
                 {stockDetail.detail &&
