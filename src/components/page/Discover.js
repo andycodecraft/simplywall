@@ -83,9 +83,9 @@ const Discover = () => {
                     className="list-grid-container"
                   >
                     <div className="list-grid">
-                      <div className="list-image">
+                      {/* <div className="list-image">
                         <img src={topStock.banner_top_image} className="main-img" alt={`top-stock-${index + 1}.avif`} />
-                      </div>
+                      </div> */}
                       <div className="idea-description">
                         <div className="description">
                           {topStock.name}

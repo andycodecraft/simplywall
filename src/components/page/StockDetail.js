@@ -37,6 +37,24 @@ const StockDetail = () => {
     setActiveItem(id);
   };
 
+  const parseContent = (content) => {
+    const imageLinkRegex = /\[https:\/\/[^\]]+\]/g;
+    const parts = [];
+    let lastIndex = 0;
+    content.replace(imageLinkRegex, (match, index) => {
+      if (index > lastIndex) {
+        parts.push({ type: 'text', content: content.substring(lastIndex, index) });
+      }
+      parts.push({ type: 'image', content: match.slice(1, -1) });      
+      lastIndex = index + match.length;
+    });
+    if (lastIndex < content.length) {
+      parts.push({ type: 'text', content: content.substring(lastIndex) });
+    }
+
+    return parts;
+  };
+
 	useEffect(() => {
 		createChat({
 			webhookUrl: 'https://superid.app.n8n.cloud/webhook/39d227a5-aac1-431d-9e55-20e4e44cb535/chat',
@@ -199,7 +217,7 @@ const StockDetail = () => {
                 <div className='info-final-container'>
                   <div className='info-final-container1'>
                     <div className='cell-container'>
-                      <p className='cell top'>UPDATED</p>
+                      <p className='cell top'>Date Posted</p>
                     </div>
                     <div className='cell-container'>
                       <p className='cell right'>{formatDate(stockDetail.posted_date)}</p>
@@ -293,12 +311,16 @@ const StockDetail = () => {
                             </h2>
                             <h2 className={`header-section ${index === 0 ? 'parent' : 'child'}`}>{detail_text.title}</h2>
                           </div>
-                          <p dangerouslySetInnerHTML={{ __html: detail_text.content ? detail_text.content.replace(/\n/g, '<br>') : '' }} />
-                          {detail_text.chart_image && (
-                            <div className='chart-image-container'>
-                              <img src={detail_text.chart_image}/>
-                            </div>
-                          )}
+                          {parseContent(detail_text.content).map((part, index) => {
+                            if (part.type === 'text') {
+                              return <p key={index} dangerouslySetInnerHTML={{ __html: part.content ? part.content.replace(/\n/g, '<br>') : '' }} />;
+                            } else if (part.type === 'image') {
+                              return <div className='chart-image-container'>
+                                <img key={index} src={part.content} alt="Chart Image"/>
+                              </div>
+                            }
+                            return null;
+                          })}
                         </React.Fragment>
                       ))}
                     {stockDetail.detail &&

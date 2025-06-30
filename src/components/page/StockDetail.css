@@ -562,7 +562,10 @@ hr {
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  height: 800px;
+}
+
+.chat-header {
+  display: none !important;
 }
 
 .chat-inputs {
