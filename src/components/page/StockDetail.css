@@ -115,6 +115,20 @@ a:hover {
   gap: 10px;
 }
 
+.chart-image-container {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart-image-container img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
 .logo-container-1 {
   height: 56px;
   width: 56px;
@@ -543,13 +557,21 @@ hr {
   margin: 32px 0px;
 }
 
-.aichat-container {
+#aichat-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  height: 800px;
 }
 
+.chat-inputs {
+  font-size: 16px;
+}
+
+.chat-layout .chat-header p {
+  font-size: 16px !important;
+}
 .search-input-container {
   width: 100%;
   display: flex;
