@@ -12,12 +12,15 @@ import logo from 'assets/image/download.svg'
 const StockDetail = () => {
   const navItems = [
     { id: '1', label: 'Company Summary' },
-    { id: '2', label: 'Core Thesis - Shortened' },
-    { id: '3', label: 'Alternative Data / Signals' },
-    { id: '4', label: 'Valuation & Price Targets' },
-    { id: '5', label: 'Download Full Stock Pitch' },
-    { id: '6', label: 'AI Advisor' },
-    { id: '7', label: 'User Comments' }
+    { id: '2', label: 'Total % Return Since Original Idea' },
+    { id: '3', label: 'Core Thesis' },
+    { id: '4', label: 'Recent News' },
+    { id: '5', label: 'Data & Signals' },
+    { id: '6', label: 'Valuation & Price Targets' },
+    { id: '7', label: 'Hedge Fund Sentiment' },
+    { id: '8', label: 'AI Advisor' },
+    { id: '9', label: 'User Comments' },
+    { id: '10', label: 'Download Full Thesis' }
   ];
 
   const { stock_id } = useParams();
@@ -65,7 +68,7 @@ const StockDetail = () => {
 	}, []);
 
   useEffect(() => {
-    if (activeItem === '6') {
+    if (activeItem === '8') {
       setIframeShow(true);
     }
   }, [activeItem]);
@@ -297,7 +300,7 @@ const StockDetail = () => {
         <div className='company-detail'>
           <article className='company-report'>
             <div className='detail-section-container'>
-              {navItems.slice(0, 4).map((navItem, navIndex) => (
+              {navItems.slice(0, 7).map((navItem, navIndex) => (
                 <section className="detail-section">
                   <div key={navItem.id} ref={el => sectionsRef.current[navIndex] = el}>
                     {stockDetail.detail && stockDetail.detail
@@ -333,7 +336,22 @@ const StockDetail = () => {
                   </div>
                 </section>
               ))}
-              <section className='detail-section' ref={el => sectionsRef.current[5] = el}>
+              <section className='detail-section' ref={el => sectionsRef.current[7] = el}>
+                <div className='outline'>
+                  <h2 className='header-section parent index'>8</h2>
+                  <h2 className='header-section parent'>AI Advisor</h2>
+                </div>
+                  <div id="aichat-container">
+                  </div>
+              </section>
+              <section className='detail-section' ref={el => sectionsRef.current[8] = el}>
+                <div className='outline'>
+                  <h2 className='header-section parent index'>9</h2>
+                  <h2 className='header-section parent'>User Comments</h2>
+                </div>
+                <FastCommentsCommentWidget tenantId="MOF1Xf3k-JTt"/>
+              </section>
+              <section className='detail-section' ref={el => sectionsRef.current[9] = el}>
               {stockDetail.detail && stockDetail.detail
                   .filter(detail_text => detail_text.category === 'Download Full Stock Pitch')
                   .map((detail_text, index) => (
@@ -349,25 +367,10 @@ const StockDetail = () => {
                 {stockDetail.detail &&
                   stockDetail.detail.filter(detail_text => detail_text.category === 'Download Full Stock Pitch').length === 0 && (
                     <div className='outline'>
-                      <h2 className='header-section parent index'>5</h2>
+                      <h2 className='header-section parent index'>10</h2>
                       <a href={`${apiPath}/downloadPDF?fileKey=${encodeURIComponent(stockDetail.pdf_file)}`} className='header-section parent download-link'>Download Full Stock Pitch</a>
                     </div>
                   )}
-              </section>
-              <section className='detail-section' ref={el => sectionsRef.current[4] = el}>
-                <div className='outline'>
-                  <h2 className='header-section parent index'>6</h2>
-                  <h2 className='header-section parent'>AI Advisor</h2>
-                </div>
-                  <div id="aichat-container">
-                  </div>
-              </section>
-              <section className='detail-section' ref={el => sectionsRef.current[6] = el}>
-                <div className='outline'>
-                  <h2 className='header-section parent index'>7</h2>
-                  <h2 className='header-section parent'>User Comments</h2>
-                </div>
-                <FastCommentsCommentWidget tenantId="demo" />
               </section>
             </div>
           </article>
