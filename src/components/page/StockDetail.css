@@ -4,12 +4,11 @@
   border-radius: 0px 0px 8px 8px;
   margin-bottom: 16px;
   min-height: 196px;
-  background-color: rgb(27, 34, 45);
+  padding-bottom: 24px;
   background-position: center center;
   background-size: cover;
   position: relative;
   z-index: 1;
-  padding-top: 8px;
 }
 
 .container {
@@ -33,6 +32,14 @@
 
 .detail-content-container {
   padding: 16px 32px 0px 32px;
+}
+
+.detail-body-container {
+  gap: 5%;
+}
+
+.detail-wrapper {
+  padding: 0 10%;
 }
 
 .detail-image-container {
@@ -117,10 +124,10 @@ a:hover {
 
 .chart-image-container {
   margin-top: 30px;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 30px 0 30px;
 }
 
 .chart-image-container img {
@@ -247,7 +254,7 @@ a:hover {
 
 .header-info-cell {
   -webkit-box-pack: start;
-  justify-content: flex-start;
+  justify-content: center;
   margin-top: 0px;
   width: auto;
   float: none;
@@ -334,7 +341,7 @@ a:hover {
 
 .detail-sidebar-container {
   flex: 0 0 25%;
-  max-width: 25%;
+  max-width: 20%;
   -webkit-box-flex: 1;
   position: relative;
   width: 100%;
@@ -347,13 +354,12 @@ a:hover {
 }
 
 .sidebar-snowflake-wrapper {
-  width: 298px;
   padding: 0px 24px 0px 0px;
 }
 
 .sidebar-snowflake {
+  padding-left: 24px;
   opacity: 1;
-  clipPath: inset(0% 0px 0px);
 }
 
 .snowflake-container1 {
@@ -435,12 +441,7 @@ a:hover {
   z-index: 1;
 }
 
-.nav-bar {
-  width: 298px;
-}
-
 .nav-bar ul li {
-  width: 267px;
   color: rgba(255, 255, 255, 0.5);
   position: relative;
   border-radius: 4px;
@@ -454,7 +455,7 @@ a:hover {
   padding: 4px 0px 4px 18px;
   height: auto;
   font-weight: normal;
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.5);
 }
@@ -501,11 +502,14 @@ a:hover {
 .detail-section {
   position: relative;
   border-radius: 8px;
-  padding: 2rem;
+  padding: 3rem;
   color: rgb(255, 255, 255);
   background-color: rgb(27, 34, 45);
 }
 
+.detail-section-wrapper {
+  padding: 30px;
+}
 .detail-section-container {
   display: flex;
   flex-direction: column;
@@ -515,6 +519,10 @@ a:hover {
 .outline {
   display: flex;
   gap: 15px;
+}
+
+.detail-section .content {
+  padding: 0 30px 0 30px;
 }
 
 .header-section {
@@ -529,10 +537,6 @@ a:hover {
 
 .child {
   font-size: 1.5rem;
-}
-
-.sub-section {
-  padding-left: 20px;
 }
 
 .no-wrap {

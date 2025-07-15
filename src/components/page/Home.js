@@ -86,9 +86,9 @@ const Home = () => {
                     handleSignupOpenDialog(); // Call your function
                   }}
                 >
-                  <div className="text-16">Get Started For Free</div>
+                  <div className="text-16">Join For Free</div>
                 </a>
-                <a href="https://investorsclub.ai/main" rel="nofollow" className="button-outline on-dark-bg"><div className="text-16">View Top Ideas</div></a>
+                <a href="/main" rel="nofollow" className="button-outline on-dark-bg"><div className="text-16">View Top Ideas</div></a>
               </div>
               <StockAdTable />
             </div>

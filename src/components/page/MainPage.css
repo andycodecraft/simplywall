@@ -27,7 +27,6 @@
 }
 
 .nav-bar-container {
-    max-width: 1200px;
     width: 100%;
 }
 
@@ -239,8 +238,115 @@
 
 .section-container {
     width: 100%;
-    max-width: calc(1200px - 48px);
-    padding: 0px 40px 8px 24px;
+    /* max-width: calc(1200px - 48px); */
+    /* padding: 0px 40px 8px 0px; */
+}
+
+.page-container {
+    display: flex;
+    gap: 36px;
+}
+
+/* .nav-menu {
+    min-width: 300px;
+    max-width: 300px;
+    background-color: #1a2026;
+} */
+
+
+.nav-menu {
+    position: fixed;
+    height: 100vh;
+    background-color: #16191c;
+    /* min-width: 350px;
+    max-width: 400px; */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 100px 0 0 0;
+    z-index: 1000;
+    width: 13%;
+}
+
+.menu-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+.menu-item {
+    color: #fff;
+    padding: 15px;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.3s;
+    width:100%;
+    box-sizing: border-box;
+}
+
+.menu-item:hover {
+    background-color: #4b5d73;
+    /* Change background on hover */
+}
+
+.menu-item.selected {
+    background-color: #3a4c5e;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.sub-page {
+    padding-left: 15%;
+    padding-right: 20px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.news-wrapper {
+    background-color: rgb(32, 40, 51);
+    min-width: 400px;
+    width: 70%;
+}
+
+.news-item-wrapper {
+    height: 70px;
+    border-bottom: 3px solid;
+    padding: 15px 0px 15px 5px;
+}
+
+.news-image {
+    width: 140px;
+    height: 70px;
+}
+
+.news-link {
+    display: flex;
+    gap: 20px;
+}
+
+.news-detail {
+    color: white;
+    font-size: 13px;
+}
+
+.news-detail h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.spacer {
+    background-color: #757575;
+    border-radius: 50%;
+    content: "";
+    display: inline-block;
+    height: .25em;
+    margin: 0 .5em;
+    vertical-align: middle;
+    width: .25em;
 }
 
 .tablist {
@@ -281,12 +387,16 @@
 }
 
 .discover-header-title {
-    text-align: center;
+    padding-left: 30px;
     font-size: 32px;
     line-height: 1.25;
     font-weight: 500;
     margin: 32px 0px;
     color: white;
+}
+
+.top-ideas-wrapper {
+    padding-right:15%;
 }
 
 .idea-list-wrap {
@@ -316,6 +426,7 @@
     align-items: center;
     background-color: rgb(32, 40, 51);
     justify-content: center;
+    height: 100%;
 }
 
 .list-image {
@@ -339,7 +450,7 @@
 
 .sub-description {
     font-weight: 300;
-    font-size: 12px;
+    font-size: 16px;
     color: white;
     width: 100%;
 }
@@ -647,14 +758,12 @@ canvas {
 
 .stocks-table-container {
     width: 100%;
-    padding-top: 20px;
     color: white;
     font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     font-size: 10px;
 }
 
 .stocks-table {
-    min-width: 920px;
     border-color: transparent;
     width: 100%;
     table-layout: auto;
@@ -671,11 +780,12 @@ canvas {
 }
 
 .stocks-table-header tr th {
-    font-size: 0.8rem;
+    font-size: 1.1rem;
     line-height: 1.5;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
 }
 
 .stocks-table th {
@@ -690,8 +800,8 @@ canvas {
     width: 40px;
 }
 
-.table-header-company {
-    width: 116px;
+.long-header {
+    width: 10%;
 }
 
 .stocks-table-header th>svg {
@@ -784,9 +894,11 @@ canvas {
     line-height: 1.5;
 }
 
-.cell-ideas div{
+.cell-ideas div {
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Allows for vertical stacking of lines */
+    align-items: center;    /* Centers the items horizontally */
+    text-align: center;     /* Centers the text within each line */
 }
 
 .cell-intro {
@@ -938,10 +1050,6 @@ canvas {
         font-size: 24px;
     }
 
-    .section-container {
-        padding: 0px;
-    }
-
     .ask-idea-container-section {
         display: block;
         margin-bottom: 24px;
@@ -1058,10 +1166,6 @@ canvas {
         margin-bottom: 0px;
         display: flex;
         font-size: 24px;
-    }
-
-    .section-container {
-        padding: 0px;
     }
 
     .ask-idea-container-section {
