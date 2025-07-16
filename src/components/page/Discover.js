@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { getStocks, getTopStocks } from 'helpers/api'
+import { getStocks, getTopStocks, getNews } from 'helpers/api'
 import { getEncryptData } from 'helpers/url';
 import { apiPath } from 'config';
 import { Link } from 'react-router-dom';
@@ -20,6 +20,7 @@ const Discover = () => {
   const [activeTab, setActiveTab] = useState(Menu.TOPS);
   const [stocks, setStocks] = useState([]);
   const [topStocks, setTopStocks] = useState([]);
+  const [news, setNews] = useState([]);
   const [error, setError] = useState(null);
 
   const formatDate = (date) => {
@@ -48,8 +49,19 @@ const Discover = () => {
       }
     }
 
+    const fetchNews = async () => {
+      try {
+        const response = await getNews();
+        setNews(response);
+      } catch (err) {
+        setError(err);
+        console.log(error);
+      }
+    }
+
     fetchStocks();
     fetchTopStocks();
+    fetchNews();
   }, []);
 
   return (
@@ -214,127 +226,23 @@ const Discover = () => {
         )}
         {activeTab === Menu.NEWS && (
           <div>
-            <h1 className='discover-header-title'>
-              Relevant News
-            </h1>
+            <h1 className='discover-header-title'>Relevant News</h1>
             <div className='news-wrapper'>
-              <div className='news-item-wrapper'>
-                <a className='news-link'>
-                  <img className='news-image' src='https://seekingalpha.com/samw/static/images/placeholder3.fc7f572b8.png?io=w107' alt='news image' />
-                  <div className='news-detail'>
-                    <h3>Bank of America's June credit card delinquency tick up, charge-offs fall</h3>
-                    <span className='company-link-style'>MSFT</span>
-                    <span> </span>
-                    <span className='negative'>-1.6%</span>
-                    <span className='spacer'></span>
-                    <span className='news-date'>Today, 6:04 AM</span>
-                  </div>
-                </a>
-              </div>
-              <div className='news-item-wrapper'>
-                <a className='news-link'>
-                  <img className='news-image' src='https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2211332135/image_2211332135.jpg?io=w107' alt='news image' />
-                  <div className='news-detail'>
-                    <h3>Commodity Roundup: Gold rises as tariff worries lift safe-haven demand ahead of key inflation data</h3>
-                    <span className='company-link-style'>GLD</span>
-                    <span> </span>
-                    <span className='negative'>-0.51%</span>
-                    <span className='spacer'></span>
-                    <span className='news-date'>Today, 6:01 AM</span>
-                  </div>
-                </a>
-              </div>
-              <div className='news-item-wrapper'>
-                <a className='news-link'>
-                  <img className='news-image' src='https://static.seekingalpha.com/cdn/s3/uploads/getty_images/1297855960/image_1297855960.jpg?io=w107' alt='news image' />
-                  <div className='news-detail'>
-                    <h3>CoreWeave stock climbs on plans to invest $6B in Pennsylvania AI data center</h3>
-                    <span className='company-link-style'>CRWV</span>
-                    <span> </span>
-                    <span className='positive'>+8.09%</span>
-                    <span className='spacer'></span>
-                    <span className='news-date'>Today, 5:50 AM</span>
-                  </div>
-                </a>
-              </div>
-              <div className='news-item-wrapper'>
-                <a className='news-link'>
-                  <img className='news-image' src='https://static.seekingalpha.com/cdn/s3/uploads/getty_images/1297855960/image_1297855960.jpg?io=w107' alt='news image' />
-                  <div className='news-detail'>
-                    <h3>CoreWeave stock climbs on plans to invest $6B in Pennsylvania AI data center</h3>
-                    <span className='company-link-style'>CRWV</span>
-                    <span> </span>
-                    <span className='positive'>+8.09%</span>
-                    <span className='spacer'></span>
-                    <span className='news-date'>Today, 5:50 AM</span>
-                  </div>
-                </a>
-              </div>
-              <div className='news-item-wrapper'>
-                <a className='news-link'>
-                  <img className='news-image' src='https://static.seekingalpha.com/cdn/s3/uploads/getty_images/1297855960/image_1297855960.jpg?io=w107' alt='news image' />
-                  <div className='news-detail'>
-                    <h3>CoreWeave stock climbs on plans to invest $6B in Pennsylvania AI data center</h3>
-                    <span className='company-link-style'>CRWV</span>
-                    <span> </span>
-                    <span className='positive'>+8.09%</span>
-                    <span className='spacer'></span>
-                    <span className='news-date'>Today, 5:50 AM</span>
-                  </div>
-                </a>
-              </div>
-              <div className='news-item-wrapper'>
-                <a className='news-link'>
-                  <img className='news-image' src='https://static.seekingalpha.com/cdn/s3/uploads/getty_images/1297855960/image_1297855960.jpg?io=w107' alt='news image' />
-                  <div className='news-detail'>
-                    <h3>CoreWeave stock climbs on plans to invest $6B in Pennsylvania AI data center</h3>
-                    <span className='company-link-style'>CRWV</span>
-                    <span> </span>
-                    <span className='positive'>+8.09%</span>
-                    <span className='spacer'></span>
-                    <span className='news-date'>Today, 5:50 AM</span>
-                  </div>
-                </a>
-              </div>
-              <div className='news-item-wrapper'>
-                <a className='news-link'>
-                  <img className='news-image' src='https://static.seekingalpha.com/cdn/s3/uploads/getty_images/1297855960/image_1297855960.jpg?io=w107' alt='news image' />
-                  <div className='news-detail'>
-                    <h3>CoreWeave stock climbs on plans to invest $6B in Pennsylvania AI data center</h3>
-                    <span className='company-link-style'>CRWV</span>
-                    <span> </span>
-                    <span className='positive'>+8.09%</span>
-                    <span className='spacer'></span>
-                    <span className='news-date'>Today, 5:50 AM</span>
-                  </div>
-                </a>
-              </div>
-              <div className='news-item-wrapper'>
-                <a className='news-link'>
-                  <img className='news-image' src='https://static.seekingalpha.com/cdn/s3/uploads/getty_images/1297855960/image_1297855960.jpg?io=w107' alt='news image' />
-                  <div className='news-detail'>
-                    <h3>CoreWeave stock climbs on plans to invest $6B in Pennsylvania AI data center</h3>
-                    <span className='company-link-style'>CRWV</span>
-                    <span> </span>
-                    <span className='positive'>+8.09%</span>
-                    <span className='spacer'></span>
-                    <span className='news-date'>Today, 5:50 AM</span>
-                  </div>
-                </a>
-              </div>
-              <div className='news-item-wrapper'>
-                <a className='news-link'>
-                  <img className='news-image' src='https://static.seekingalpha.com/cdn/s3/uploads/getty_images/1297855960/image_1297855960.jpg?io=w107' alt='news image' />
-                  <div className='news-detail'>
-                    <h3>CoreWeave stock climbs on plans to invest $6B in Pennsylvania AI data center</h3>
-                    <span className='company-link-style'>CRWV</span>
-                    <span> </span>
-                    <span className='positive'>+8.09%</span>
-                    <span className='spacer'></span>
-                    <span className='news-date'>Today, 5:50 AM</span>
-                  </div>
-                </a>
-              </div>
+              {news.map((item, index) => (
+                <div className='news-item-wrapper'>
+                  <a className='news-link'>
+                    <img className='news-image' src={item['image_url']} alt='news image' />
+                    <div className='news-detail'>
+                      <h3>{item['title']}</h3>
+                      <span className='company-link-style'>{item['sticker']}</span>
+                      <span> </span>
+                      <span className='negative'>{item['trend']}%</span>
+                      <span className='spacer'></span>
+                      <span className='news-date'>{item['date']}</span>
+                    </div>
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
         )}

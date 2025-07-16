@@ -116,7 +116,6 @@ const StockDetail = () => {
     const fetchTopStockById = async (stock_id) => {
       try {
         const response = await getTopStockById(stock_id);
-        console.log(response)
         setStockDetail(response);
       } catch (err) {
         console.log(err);

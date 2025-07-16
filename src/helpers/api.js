@@ -87,3 +87,12 @@ export const getTopStockById = async (stock_id) => {
     throw error.message;
   }
 };
+
+export const getNews = async () => {
+  try {
+    const response = await axios.get(`${config.apiPath}/getNews`);
+    return response.data.response;
+  } catch (error) {
+    throw error.message;
+  }
+};
