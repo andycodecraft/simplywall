@@ -234,7 +234,7 @@ const Discover = () => {
                     <img className='news-image' src={item['image_url']} alt='news image' />
                     <div className='news-detail'>
                       <h3>{item['title']}</h3>
-                      <span className='company-link-style'>{item['sticker']}</span>
+                      <span className='company-link-style'>{item['ticker']}</span>
                       <span> </span>
                       <span className='negative'>{item['trend']}%</span>
                       <span className='spacer'></span>
